@@ -77,14 +77,14 @@ const Contact = () => {
                             <ScrollReveal delay={0.5}>
                                 <div className="pt-4">
                                     <h4 className="text-xs font-bold tracking-[0.3em] uppercase text-[#f97316] mb-4">{t.contact.labels.social}</h4>
-                                    <div className="flex gap-10 -ml-10">
-                                        {['linkedin', 'behance', 'instagram'].map((platform) => (
+                                    <div className="flex gap-6">
+                                        {['linkedin', 'instagram'].map((platform) => (
                                             <a
                                                 key={platform}
-                                                href={platform === 'linkedin' ? "https://www.linkedin.com/in/nicolas-avayu-01036515/" : platform === 'behance' ? "https://www.behance.net/nicoavayu" : "https://www.instagram.com/nico_avayu/"}
+                                                href={platform === 'linkedin' ? "https://www.linkedin.com/in/nicolas-avayu-01036515/" : "https://www.instagram.com/nico_avayu/"}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="h-12 md:h-16 transition-all duration-300 hover:scale-110 hover:[filter:invert(48%)_sepia(79%)_saturate(2476%)_hue-rotate(346deg)_brightness(98%)_contrast(97%)]"
+                                                className="h-10 md:h-12 transition-all duration-300 hover:scale-110 hover:[filter:invert(48%)_sepia(79%)_saturate(2476%)_hue-rotate(346deg)_brightness(98%)_contrast(97%)]"
                                             >
                                                 <img
                                                     src={`/images/${platform}.png`}

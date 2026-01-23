@@ -10,7 +10,7 @@ export const translations = {
             title_part2: 'NICO',
             headline: 'Senior Motion Designer & Video Editor',
             secondary_roles: 'Graphic Designer · Brand Designer · UX Developer · Web Designer',
-            bio: 'Senior Motion Designer & Video Editor with 15+ years of experience across broadcast, social, and brand work. Strong background in graphic design and brand development, creating visual systems that translate naturally into motion and digital products.\n\nI also design and build clean, performance-minded websites, handling UX, layout, and front-end implementation when needed.',
+            bio: 'Senior Motion Designer & Video Editor with over 15 years of experience across television, social media, and brand content. Strong background in graphic design and brand development, applied to motion graphics, video, and digital products.\n\nThat same approach extends to web design and UX for mobile applications, covering visual design and, when required, front-end implementation.',
             focus: 'Focus'
         },
         categories: {

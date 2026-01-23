@@ -13,7 +13,7 @@ const About = () => {
                         <div className="absolute -inset-1 bg-gradient-to-r from-[#f97316] to-[#ea580c] rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                         <div className="relative">
                             <img
-                                src="/images/imagen perfil.png"
+                                src="/images/profile.png"
                                 alt="Nico Avayú"
                                 className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-2 border-gray-200 dark:border-gray-800 transition-colors duration-500"
                             />

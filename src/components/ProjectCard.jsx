@@ -128,15 +128,13 @@ const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio
                 </div>
 
                 {/* Content Below */}
-                <div className={`${compact ? 'mt-2 px-1' : 'mt-4'} flex flex-col items-center text-center`}>
-                    <motion.h3
-                        className={`${compact ? 'text-[10px]' : 'text-sm'} font-medium tracking-[0.2em] uppercase transition-colors text-black dark:text-white`}
-                        animate={{ color: isHovered ? '#f97316' : undefined }}
-                        transition={{ duration: 0.3 }}
+                <div className={`${compact ? 'mt-3 px-1' : 'mt-6'} flex flex-col items-center text-center`}>
+                    <h3
+                        className={`${compact ? 'text-[10px]' : 'text-sm'} font-semibold tracking-[0.2em] uppercase transition-colors duration-300 text-black dark:text-white group-hover:text-[#f97316]`}
                     >
                         {title}
-                    </motion.h3>
-                    <span className={`${compact ? 'text-[8px] mt-1' : 'text-xs mt-2'} text-gray-400 dark:text-gray-500 font-light tracking-wide transition-colors duration-500`}>
+                    </h3>
+                    <span className={`${compact ? 'text-[8px] mt-1.5' : 'text-xs mt-3'} text-gray-500 dark:text-gray-400 font-medium tracking-[0.1em] transition-colors duration-500 uppercase`}>
                         {year}
                     </span>
                 </div>

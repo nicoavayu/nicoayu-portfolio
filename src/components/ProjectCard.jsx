@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 
-const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio = "aspect-[4/3]", poster, compact = false }) => {
+const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio = "aspect-[4/3]", poster, compact = false, details }) => {
     const [isHovered, setIsHovered] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isVideoLoading, setIsVideoLoading] = useState(true)
@@ -160,11 +160,12 @@ const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio
                             exit={{ opacity: 0 }}
                         />
 
+                        {/* Modal Container */}
                         <motion.div
-                            className={`relative w-full z-10 ${aspectRatio === "aspect-[9/16]"
-                                ? "max-w-[400px] aspect-[9/16] h-[85vh]"
-                                : "max-w-6xl aspect-video"
-                                } bg-black shadow-2xl rounded-sm overflow-hidden`}
+                            className={`relative w-full z-10 max-h-[90vh] overflow-y-auto ${details
+                                ? "max-w-6xl"
+                                : (aspectRatio === "aspect-[9/16]" ? "max-w-[400px] h-[85vh]" : "max-w-5xl aspect-video")
+                                } bg-black shadow-2xl rounded-sm`}
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -174,38 +175,79 @@ const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio
                                 damping: 25
                             }}
                         >
-                            {/* Close Button */}
+                            {/* Close Button Inside Modal (Fixed top right of container) */}
                             <motion.button
                                 onClick={toggleModal}
-                                className="absolute -top-12 right-0 text-white hover:text-[#f97316] transition-colors duration-300 flex items-center gap-2 group z-20"
-                                initial={{ opacity: 0, y: -10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                                className="absolute top-4 right-4 text-white/50 hover:text-[#f97316] transition-colors duration-300 z-50 p-2"
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
                             >
-                                <span className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-opacity">Close</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </motion.button>
 
-                            {/* Video Content (Iframe or Local Video) */}
-                            {videoUrl.includes('vimeo.com') || videoUrl.includes('youtube.com') ? (
-                                <iframe
-                                    src={`${videoUrl}${videoUrl.includes('?') ? '&' : '?'}autoplay=1&title=0&byline=0&portrait=0`}
-                                    className="w-full h-full"
-                                    allow="autoplay; fullscreen; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            ) : (
-                                <video
-                                    src={videoUrl}
-                                    autoPlay
-                                    controls
-                                    className="w-full h-full"
-                                ></video>
-                            )}
+                            <div className={`flex flex-col ${details ? 'lg:flex-row' : ''}`}>
+                                {/* Video Section */}
+                                <div className={`${details ? 'lg:w-[70%]' : 'w-full'} bg-black flex items-center justify-center`}>
+                                    <div className={`w-full ${details ? 'h-full aspect-video lg:aspect-auto' : 'h-full aspect-video'}`}>
+                                        {videoUrl.includes('vimeo.com') || videoUrl.includes('youtube.com') ? (
+                                            <iframe
+                                                src={`${videoUrl}${videoUrl.includes('?') ? '&' : '?'}autoplay=1&title=0&byline=0&portrait=0`}
+                                                className="w-full h-full min-h-[300px]"
+                                                allow="autoplay; fullscreen; picture-in-picture"
+                                                allowFullScreen
+                                            ></iframe>
+                                        ) : (
+                                            <video
+                                                src={videoUrl}
+                                                autoPlay
+                                                controls
+                                                className="w-full h-full max-h-[85vh] object-contain"
+                                            ></video>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Description Section (Visible only if details exist) */}
+                                {details && (
+                                    <div className="lg:w-[30%] p-8 lg:p-10 border-t lg:border-t-0 lg:border-l border-white/10 bg-black/50 overflow-y-auto max-h-[90vh]">
+                                        <h2 className="text-xl md:text-2xl font-black tracking-[0.2em] uppercase text-white mb-8 border-b border-[#f97316] pb-4">
+                                            {title}
+                                        </h2>
+
+                                        <div className="space-y-8">
+                                            {details.role && (
+                                                <div className="space-y-1">
+                                                    <span className="text-[#f97316] text-[10px] font-bold tracking-[0.3em] uppercase block">Role</span>
+                                                    <p className="text-gray-200 text-sm font-light tracking-wide">{details.role}</p>
+                                                </div>
+                                            )}
+
+                                            {details.scope && (
+                                                <div className="space-y-1">
+                                                    <span className="text-[#f97316] text-[10px] font-bold tracking-[0.3em] uppercase block">Scope</span>
+                                                    <p className="text-gray-200 text-sm font-light leading-relaxed tracking-wide">{details.scope}</p>
+                                                </div>
+                                            )}
+
+                                            {details.tools && (
+                                                <div className="space-y-1">
+                                                    <span className="text-[#f97316] text-[10px] font-bold tracking-[0.3em] uppercase block">Tools</span>
+                                                    <p className="text-gray-200 text-sm font-light tracking-wide">{details.tools}</p>
+                                                </div>
+                                            )}
+
+                                            {details.context && (
+                                                <div className="space-y-1">
+                                                    <span className="text-[#f97316] text-[10px] font-bold tracking-[0.3em] uppercase block">Context</span>
+                                                    <p className="text-gray-300 text-sm font-light leading-relaxed tracking-wide opacity-80">{details.context}</p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}

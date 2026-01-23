@@ -2,146 +2,200 @@ export const PROJECTS = [
     // Motion Graphics Section
     {
         id: 'm2',
-        title: 'Fox Sports Videocall',
+        title: 'Fox Sports — “Videollamada”',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/fox_sports_-_videollamada_grafica_test_2019 (1080p).mp4',
         videoUrl: '/videos/motion graphics/fox_sports_-_videollamada_grafica_test_2019 (1080p).mp4',
-        poster: '/images/_stills_MG/videollamada.png'
+        poster: '/images/_stills_MG/videollamada.png',
+        details: {
+            role: 'Motion Designer & Video Editor',
+            scope: 'Concept, Script, 3D Interface Design, Animation, Editing, Sound Design',
+            context: 'End-to-end creation of a new video format for Fox Sports, featuring a custom 3D videollamada interface and fully animated motion graphics. Produced using Cinema 4D and Adobe After Effects. Published on Fox Sports’ website and social platforms.'
+        }
     },
     {
         id: 'm3',
-        title: 'ESPN Premier League',
+        title: 'ESPN — Premier League “Pregame”',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/pre_game_-_premier_league_-_espn (1080p).mp4',
         videoUrl: '/videos/motion graphics/pre_game_-_premier_league_-_espn (1080p).mp4',
-        poster: '/images/_stills_MG/pregame.png'
+        poster: '/images/_stills_MG/pregame.png',
+        details: {
+            role: 'Motion Designer & Video Editor',
+            scope: 'Motion Graphics, Key Visuals, Video Editing, Music, Final Delivery',
+            context: 'Creation of the official ESPN Premier League Pregame format. Developed key visuals and motion graphics in After Effects and adapted match footage, text, and music for final delivery. Currently live on ESPN platforms.'
+        }
     },
     {
         id: 'm5',
-        title: 'Barukas Ad',
+        title: 'Barukas — Brand Video',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/social media/barukas_-_ad (1080p).mp4',
-        videoUrl: '/videos/social media/barukas_-_ad (1080p).mp4'
+        videoUrl: '/videos/social media/barukas_-_ad (1080p).mp4',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Motion Graphics, Animated Background Design',
+            context: 'Brand-focused motion graphics video created to support Barukas’ visual identity and promotional content.'
+        }
     },
     {
         id: 'm18',
-        title: 'Orkos',
+        title: 'Orkos / InvGate — Event Stand Video',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/Orkos_Invgate_Screen_1080.mp4',
         videoUrl: '/videos/motion graphics/Orkos_Invgate_Screen_1080.mp4',
-        poster: '/images/_stills_MG/invgate.png'
+        poster: '/images/_stills_MG/invgate.png',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Motion Graphics, Visual Design, Animation',
+            context: 'Motion graphics video created for a trade show stand, designed to communicate brand messaging in a looped, high-impact format for live event environments.'
+        }
     },
     {
         id: 'm6',
-        title: 'Seguridad Vial',
+        title: 'Government of Buenos Aires — Road Safety Awareness',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/seguridad_vial_y_género_-_2021 (1080p).mp4',
         videoUrl: '/videos/motion graphics/seguridad_vial_y_género_-_2021 (1080p).mp4',
-        poster: '/images/_stills_MG/seguridad vial.png'
+        poster: '/images/_stills_MG/seguridad vial.png',
+        details: {
+            role: 'Motion Designer (Collaboration)',
+            scope: 'Motion Graphics, Illustration, Character Design, Animation',
+            context: 'Educational and awareness video focused on road safety and discrimination, created in collaboration with another designer.'
+        }
     },
     {
         id: 'm7',
-        title: 'ESPN Ligue 1',
+        title: 'ESPN — Ligue 1 “Pregame”',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/PREGAME LIGUE1.mp4',
         videoUrl: '/videos/motion graphics/PREGAME LIGUE1.mp4',
-        poster: '/images/_stills_MG/pregameligue1.png'
+        poster: '/images/_stills_MG/pregameligue1.png',
+        details: {
+            role: 'Motion Designer & Video Editor',
+            scope: 'Motion Graphics, Key Visuals, Video Editing, Music, Final Delivery',
+            context: 'Creation of the official ESPN Ligue 1 Pregame format, following the same visual system and workflow developed for ESPN Pregame formats. Currently live on ESPN platforms.'
+        }
     },
     {
         id: 'm8',
-        title: 'ESET Corp Video',
+        title: 'ESET — Corporate Video (NOD32)',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/eset_-_video_corp._2014 (1080p).mp4',
         videoUrl: '/videos/motion graphics/eset_-_video_corp._2014 (1080p).mp4',
-        poster: '/images/_stills_MG/eset.png'
+        poster: '/images/_stills_MG/eset.png',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Motion Graphics, Composition Design, Audio Editing',
+            context: 'Corporate motion graphics video created for ESET and its NOD32 product, focusing on clear visual communication and brand-aligned design.'
+        }
     },
     {
         id: 'm9',
-        title: 'Rebecca Logo Animation',
+        title: 'Rebeca — Logo Animation',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/rebecca_contenidos_-_animation_logo (1080p).mp4',
         videoUrl: '/videos/motion graphics/rebecca_contenidos_-_animation_logo (1080p).mp4',
-        poster: '/images/_stills_MG/rebeca.png'
+        poster: '/images/_stills_MG/rebeca.png',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Logo Animation, Visual Design',
+            tools: 'After Effects, Illustrator, Photoshop',
+            context: 'Animated logo developed to enhance brand identity across digital platforms.'
+        }
     },
-    {
-        id: 'm10',
-        title: 'Link pilot',
-        category: 'Motion Graphics',
-        subcategory: 'motion',
-        previewUrl: '/videos/motion graphics/link_pre_air_-_web_version_-_2012 (720p).mp4',
-        videoUrl: '/videos/motion graphics/link_pre_air_-_web_version_-_2012 (720p).mp4',
-        poster: '/images/_stills_MG/link.png'
-    },
+
     {
         id: 'm11',
-        title: 'Asma Zero',
+        title: 'Asma Zero — App Explainer',
         category: 'App Showcase',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/asma_zero_-_final_test (1080p).mp4',
         videoUrl: '/videos/motion graphics/asma_zero_-_final_test (1080p).mp4',
-        poster: '/images/_stills_MG/AsmaZero.png'
+        poster: '/images/_stills_MG/AsmaZero.png',
+        details: {
+            role: 'Motion Designer & Video Editor',
+            scope: 'Motion Graphics, Video Editing, Feature Explanation',
+            context: 'Explainer video created to showcase the app’s features and guide users through its functionality in a clear and engaging way.'
+        }
     },
     {
         id: 'm12',
-        title: 'BOA Kinetic Type',
+        title: 'BOA — Kinetic Typography',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/boa_-_kinetic_type_explainer_video_2021_- (1080p).mp4',
         videoUrl: '/videos/motion graphics/boa_-_kinetic_type_explainer_video_2021_- (1080p).mp4',
-        poster: '/images/_stills_MG/BOA.png'
+        poster: '/images/_stills_MG/BOA.png',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Kinetic Typography, Motion Graphics, Video Editing, Audio Editing',
+            context: 'Kinetic typography video created to visually support and enhance a scripted message for a U.S.-based client, using motion-driven text to communicate the narrative clearly and effectively.'
+        }
     },
     {
         id: 'm13',
-        title: 'ESET character animation',
+        title: 'ESET — Character Animation',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/eset_-_la_familia_segura_-_2011 (720p).mp4',
         videoUrl: '/videos/motion graphics/eset_-_la_familia_segura_-_2011 (720p).mp4',
-        poster: '/images/_stills_MG/familiasegura.png'
+        poster: '/images/_stills_MG/familiasegura.png',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Character Design, Illustration, Character Animation, Audio & Video Editing',
+            context: 'Character-driven animation created to promote ESET’s antivirus product, covering design, animation, and full post-production.'
+        }
     },
     {
         id: 'm14',
-        title: 'Quick Audits',
+        title: 'Quick Audits — App Promo',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/quick_audits_-_cc_2017 (720p).mp4',
         videoUrl: '/videos/motion graphics/quick_audits_-_cc_2017 (720p).mp4',
-        poster: '/images/_stills_MG/quickaudits.png'
+        poster: '/images/_stills_MG/quickaudits.png',
+        details: {
+            role: 'Motion Designer & Video Editor',
+            scope: 'Motion Graphics, Video Editing, Audio Editing',
+            context: 'Promotional video developed to support the launch of the Quick Audits application, highlighting features and value through motion graphics.'
+        }
     },
     {
         id: 'm15',
-        title: 'Apima Logo animation',
+        title: 'Apima — Logo Animation',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/apima_-_logo_test (1080p).mp4',
         videoUrl: '/videos/motion graphics/apima_-_logo_test (1080p).mp4',
-        poster: '/images/_stills_MG/Apima.png'
+        poster: '/images/_stills_MG/Apima.png',
+        details: {
+            role: 'Motion Designer',
+            scope: 'Logo Animation, Visual Design',
+            context: 'Animated logo created for a film production company, designed for digital and brand applications.'
+        }
     },
     {
         id: 'm1',
-        title: 'FIT SHOES',
+        title: 'Fit Shoes — Product Video',
         category: 'Video Edition',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/reel_fit_shoes_-_2020 (1080p).mp4',
         videoUrl: '/videos/motion graphics/reel_fit_shoes_-_2020 (1080p).mp4',
-        poster: '/images/_stills_MG/FIT.png'
-    },
-    {
-        id: 'm4',
-        title: 'Reel 2016',
-        category: 'Motion Graphics',
-        subcategory: 'motion',
-        previewUrl: '/videos/motion graphics/nico_avayú_-_motion_reel_2016 (720p).mp4',
-        videoUrl: '/videos/motion graphics/nico_avayú_-_motion_reel_2016 (720p).mp4',
-        poster: '/images/_stills_MG/motionreel.png'
+        poster: '/images/_stills_MG/FIT.png',
+        details: {
+            role: 'Video Editor',
+            scope: 'Video Editing, Audio Editing',
+            context: 'Product-focused video edit showcasing footwear features and design. Editing-only project without motion graphics.'
+        }
     },
 
     // Short-Form Ads Section

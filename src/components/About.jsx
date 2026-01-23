@@ -22,39 +22,33 @@ const About = () => {
                 </ScrollReveal>
 
                 {/* About Content */}
-                <div className="space-y-8 flex flex-col items-center w-full">
+                <div className="space-y-10 flex flex-col items-center w-full">
                     <ScrollReveal delay={0.3} width="100%">
-                        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-8 text-black dark:text-white transition-colors duration-500">
+                        <h2 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-2 text-black dark:text-white transition-colors duration-500">
                             {t.about.title_part1} <span className="text-[#f97316]">{t.about.title_part2}</span>
                         </h2>
                     </ScrollReveal>
 
-                    <div className="space-y-6 w-full">
+                    <div className="w-full">
                         <ScrollReveal delay={0.4} width="100%">
-                            <p className="text-xl md:text-2xl text-gray-900 dark:text-white font-medium max-w-2xl mx-auto leading-tight transition-colors duration-500">
-                                {t.about.lead}
+                            <p className="text-2xl md:text-4xl text-black dark:text-white font-black max-w-3xl mx-auto leading-[1.1] transition-colors duration-500 uppercase tracking-tight">
+                                {t.about.headline}
+                            </p>
+                            <p className="text-xs md:text-sm text-[#f97316] font-bold tracking-[0.3em] uppercase mt-6 opacity-90">
+                                {t.about.secondary_roles}
                             </p>
                         </ScrollReveal>
                     </div>
 
                     <ScrollReveal delay={0.5}>
-                        <div className="h-px w-12 bg-gray-200 dark:bg-gray-800 mx-auto transition-colors duration-500"></div>
+                        <div className="h-px w-16 bg-gray-200 dark:bg-gray-800 mx-auto transition-colors duration-500"></div>
                     </ScrollReveal>
 
-                    <div className="space-y-6 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light transition-colors duration-500 w-full">
+                    <div className="space-y-6 text-gray-800 dark:text-gray-200 max-w-3xl mx-auto transition-colors duration-500 w-full">
                         <ScrollReveal delay={0.6} width="100%">
-                            <p className="text-lg leading-relaxed text-pretty">
+                            <div className="text-lg md:text-xl leading-relaxed text-pretty font-light whitespace-pre-wrap text-center">
                                 {t.about.bio}
-                            </p>
-                        </ScrollReveal>
-                    </div>
-
-                    <div className="pt-8 w-full">
-                        <ScrollReveal delay={0.7} width="100%">
-                            <h6 className="text-[#f97316] text-sm font-bold tracking-[0.3em] uppercase mb-4">{t.about.focus}</h6>
-                            <p className="text-gray-900 dark:text-white text-lg font-light tracking-wide italic transition-colors duration-500">
-                                Multimedia design · Video editing · Motion graphics · Digital content
-                            </p>
+                            </div>
                         </ScrollReveal>
                     </div>
                 </div>

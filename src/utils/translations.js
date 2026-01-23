@@ -8,8 +8,9 @@ export const translations = {
         about: {
             title_part1: 'ABOUT',
             title_part2: 'NICO',
-            lead: 'Senior multimedia designer with over 15 years of experience in video editing and motion graphics for TV, digital, and social media platforms.',
-            bio: 'Experienced in branded content, promos, and performance-driven social ads for international clients. Strong visual storytelling skills, used to fast-paced environments, tight deadlines, and collaborative international teams. Always curious and continuously learning, I stay up to date with new tools, trends, and technologies to create engaging, effective, and visually polished content.',
+            headline: 'Senior Motion Designer & Video Editor',
+            secondary_roles: 'Graphic Designer · Brand Designer · UX Developer · Web Designer',
+            bio: 'Senior Motion Designer & Video Editor with 15+ years of experience across broadcast, social, and brand work. Strong background in graphic design and brand development, creating visual systems that translate naturally into motion and digital products.\n\nI also design and build clean, performance-minded websites, handling UX, layout, and front-end implementation when needed.',
             focus: 'Focus'
         },
         categories: {
@@ -69,8 +70,9 @@ export const translations = {
         about: {
             title_part1: 'SOBRE',
             title_part2: 'NICO',
-            lead: 'Diseñador multimedia senior con más de 15 años de experiencia en edición de video y motion graphics para TV, plataformas digitales y redes sociales.',
-            bio: 'Experimentado en contenido de marca, promos y anuncios sociales orientados al rendimiento para clientes internacionales. Fuertes habilidades de storytelling visual, acostumbrado a entornos dinámicos, plazos ajustados y equipos internacionales colaborativos. Siempre curioso y en constante aprendizaje, me mantengo actualizado con nuevas herramientas, tendencias y tecnologías para crear contenido atractivo, efectivo y visualmente pulido.',
+            headline: 'Senior Motion Designer & Editor de Video',
+            secondary_roles: 'Diseñador Gráfico · Diseñador de Marca · Desarrollador UX · Diseñador Web',
+            bio: 'Senior Motion Designer & Editor de Video con más de 15 años de experiencia en televisión, redes sociales y contenido de marca. Sólida formación en diseño gráfico y desarrollo de marca, creando sistemas visuales que se traducen naturalmente en motion y productos digitales.\n\nTambién diseño y construyo sitios web limpios y orientados al rendimiento, encargándome del UX, diseño e implementación front-end cuando es necesario.',
             focus: 'Enfoque'
         },
         categories: {

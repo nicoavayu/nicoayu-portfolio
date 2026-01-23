@@ -72,7 +72,7 @@ export const translations = {
             title_part2: 'NICO',
             headline: 'Senior Motion Designer & Editor de Video',
             secondary_roles: 'Diseñador Gráfico · Diseñador de Marca · Desarrollador UX · Diseñador Web',
-            bio: 'Senior Motion Designer & Editor de Video con más de 15 años de experiencia en televisión, redes sociales y contenido de marca. Sólida formación en diseño gráfico y desarrollo de marca, creando sistemas visuales que se traducen naturalmente en motion y productos digitales.\n\nTambién diseño y construyo sitios web limpios y orientados al rendimiento, encargándome del UX, diseño e implementación front-end cuando es necesario.',
+            bio: 'Senior Motion Designer & Video Editor con más de 15 años de experiencia en televisión, redes sociales y contenido de marca. Background en diseño gráfico y desarrollo de marca, aplicado a motion graphics, video y productos digitales.\n\nEse mismo enfoque se extiende al diseño de sitios web y UX para aplicaciones mobile, abarcando diseño visual y, cuando el proyecto lo requiere, implementación front-end.',
             focus: 'Enfoque'
         },
         categories: {

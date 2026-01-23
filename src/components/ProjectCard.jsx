@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 
-const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio = "aspect-[4/3]", poster, compact = false, details }) => {
+const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio = "aspect-[4/3]", poster, compact = false, details, year }) => {
     const [isHovered, setIsHovered] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isVideoLoading, setIsVideoLoading] = useState(true)
@@ -136,8 +136,8 @@ const ProjectCard = ({ title, category, image, previewUrl, videoUrl, aspectRatio
                     >
                         {title}
                     </motion.h3>
-                    <span className={`${compact ? 'text-[8px] mt-1' : 'text-xs mt-2'} text-gray-400 dark:text-gray-500 font-light tracking-wide uppercase transition-colors duration-500`}>
-                        {translatedCategory}
+                    <span className={`${compact ? 'text-[8px] mt-1' : 'text-xs mt-2'} text-gray-400 dark:text-gray-500 font-light tracking-wide transition-colors duration-500`}>
+                        {year}
                     </span>
                 </div>
             </motion.div>

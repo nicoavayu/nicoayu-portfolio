@@ -2,7 +2,8 @@ export const PROJECTS = [
     // Motion Graphics Section
     {
         id: 'm2',
-        title: 'Fox Sports — “Videollamada”',
+        title: 'Fox Sports',
+        year: '2018',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/fox_sports_-_videollamada_grafica_test_2019 (1080p).mp4',
@@ -16,7 +17,8 @@ export const PROJECTS = [
     },
     {
         id: 'm3',
-        title: 'ESPN — Premier League “Pregame”',
+        title: 'ESPN Premier League',
+        year: 'Present',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/pre_game_-_premier_league_-_espn (1080p).mp4',
@@ -30,7 +32,8 @@ export const PROJECTS = [
     },
     {
         id: 'm5',
-        title: 'Barukas — Brand Video',
+        title: 'Barukas',
+        year: '2016',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/social media/barukas_-_ad (1080p).mp4',
@@ -43,7 +46,8 @@ export const PROJECTS = [
     },
     {
         id: 'm18',
-        title: 'Orkos / InvGate — Event Stand Video',
+        title: 'Orkos / InvGate',
+        year: '2025',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/Orkos_Invgate_Screen_1080.mp4',
@@ -57,7 +61,8 @@ export const PROJECTS = [
     },
     {
         id: 'm6',
-        title: 'Government of Buenos Aires — Road Safety Awareness',
+        title: 'Government of Buenos Aires',
+        year: '2021',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/seguridad_vial_y_género_-_2021 (1080p).mp4',
@@ -71,7 +76,8 @@ export const PROJECTS = [
     },
     {
         id: 'm7',
-        title: 'ESPN — Ligue 1 “Pregame”',
+        title: 'ESPN Ligue 1',
+        year: 'Present',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/PREGAME LIGUE1.mp4',
@@ -85,7 +91,8 @@ export const PROJECTS = [
     },
     {
         id: 'm8',
-        title: 'ESET — Corporate Video (NOD32)',
+        title: 'ESET (NOD32 Corporate Video)',
+        year: '2020',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/eset_-_video_corp._2014 (1080p).mp4',
@@ -99,7 +106,8 @@ export const PROJECTS = [
     },
     {
         id: 'm9',
-        title: 'Rebeca — Logo Animation',
+        title: 'Rebeca',
+        year: '2021',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/rebecca_contenidos_-_animation_logo (1080p).mp4',
@@ -115,7 +123,8 @@ export const PROJECTS = [
 
     {
         id: 'm11',
-        title: 'Asma Zero — App Explainer',
+        title: 'Asma Zero',
+        year: '2020',
         category: 'App Showcase',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/asma_zero_-_final_test (1080p).mp4',
@@ -129,7 +138,8 @@ export const PROJECTS = [
     },
     {
         id: 'm12',
-        title: 'BOA — Kinetic Typography',
+        title: 'BOA',
+        year: '2022',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/boa_-_kinetic_type_explainer_video_2021_- (1080p).mp4',
@@ -143,7 +153,8 @@ export const PROJECTS = [
     },
     {
         id: 'm13',
-        title: 'ESET — Character Animation',
+        title: 'ESET (Character Animation)',
+        year: '2011',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/eset_-_la_familia_segura_-_2011 (720p).mp4',
@@ -157,7 +168,8 @@ export const PROJECTS = [
     },
     {
         id: 'm14',
-        title: 'Quick Audits — App Promo',
+        title: 'Quick Audits',
+        year: '2019',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/quick_audits_-_cc_2017 (720p).mp4',
@@ -171,7 +183,8 @@ export const PROJECTS = [
     },
     {
         id: 'm15',
-        title: 'Apima — Logo Animation',
+        title: 'Apima',
+        year: '2017',
         category: 'Motion Graphics',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/apima_-_logo_test (1080p).mp4',
@@ -185,7 +198,8 @@ export const PROJECTS = [
     },
     {
         id: 'm1',
-        title: 'Fit Shoes — Product Video',
+        title: 'Fit Shoes',
+        year: '2020',
         category: 'Video Edition',
         subcategory: 'motion',
         previewUrl: '/videos/motion graphics/reel_fit_shoes_-_2020 (1080p).mp4',
@@ -202,6 +216,7 @@ export const PROJECTS = [
     {
         id: 's1',
         title: 'Alpecin',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/alpecin.mp4',
@@ -211,6 +226,7 @@ export const PROJECTS = [
     {
         id: 's2',
         title: 'Quillbot',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/quillbot.mp4',
@@ -220,6 +236,7 @@ export const PROJECTS = [
     {
         id: 's3',
         title: 'USCCA',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/uscca.mp4',
@@ -229,6 +246,7 @@ export const PROJECTS = [
     {
         id: 's4',
         title: 'Stately',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/stately.mp4',
@@ -238,6 +256,7 @@ export const PROJECTS = [
     {
         id: 's5',
         title: 'Atomic pads',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/atomicpads.mp4',
@@ -247,6 +266,7 @@ export const PROJECTS = [
     {
         id: 's6',
         title: 'Mockingbird',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/mockingbird.mp4',
@@ -256,6 +276,7 @@ export const PROJECTS = [
     {
         id: 's7',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/337_Video_Branded animation_V.mp4',
@@ -265,6 +286,7 @@ export const PROJECTS = [
     {
         id: 's8',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast crash.mp4',
@@ -274,6 +296,7 @@ export const PROJECTS = [
     {
         id: 's9',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast swipe.mp4',
@@ -283,6 +306,7 @@ export const PROJECTS = [
     {
         id: 's10',
         title: 'Antevorta',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/antevorta.mp4',
@@ -292,6 +316,7 @@ export const PROJECTS = [
     {
         id: 's11',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast jump.mp4',
@@ -301,6 +326,7 @@ export const PROJECTS = [
     {
         id: 's12',
         title: 'Innerwell',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/innerwell.mp4',
@@ -310,6 +336,7 @@ export const PROJECTS = [
     {
         id: 's13',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast starter pack.mp4',
@@ -319,6 +346,7 @@ export const PROJECTS = [
     {
         id: 's14',
         title: 'Sheath',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/sheat.mp4',
@@ -328,6 +356,7 @@ export const PROJECTS = [
     {
         id: 's15',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast tinder.mp4',
@@ -337,6 +366,7 @@ export const PROJECTS = [
     {
         id: 's16',
         title: 'Eco towells',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/ecotowells.mp4',
@@ -346,6 +376,7 @@ export const PROJECTS = [
     {
         id: 's19',
         title: 'Playbook',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/playbook.mp4',
@@ -355,6 +386,7 @@ export const PROJECTS = [
     {
         id: 's20',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast box.mp4',
@@ -364,6 +396,7 @@ export const PROJECTS = [
     {
         id: 's21',
         title: 'Threadbeast',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/threadbeast 3d box.mp4',
@@ -373,6 +406,7 @@ export const PROJECTS = [
     {
         id: 's22',
         title: 'Hometap',
+        year: '2024',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
         previewUrl: '/videos/social media/hometap.mp4',

@@ -521,9 +521,9 @@ import ProjectCard from './ProjectCard'
 import ScrollReveal from './ScrollReveal'
 import { useLanguage } from '../context/LanguageContext'
 
-const ProjectGrid = () => {
+const ProjectGrid = ({ activeCategory = 'motion', onCategoryChange }) => {
     const { t } = useLanguage()
-    const [activeFilter, setActiveFilter] = useState('motion')
+    const activeFilter = activeCategory
     const [isTransitioning, setIsTransitioning] = useState(false)
 
     const filters = [
@@ -538,7 +538,7 @@ const ProjectGrid = () => {
     const handleFilterChange = (filterId) => {
         if (filterId !== activeFilter) {
             setIsTransitioning(true)
-            setActiveFilter(filterId)
+            onCategoryChange?.(filterId)
             // Reset transition state after animation completes
             setTimeout(() => setIsTransitioning(false), 400)
         }

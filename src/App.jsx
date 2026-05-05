@@ -6,10 +6,39 @@ import Contact from './components/Contact'
 import ArchiveView from './components/ArchiveView'
 import CvView from './components/CvView'
 
-const getCurrentRoute = () => {
-  const path = window.location.pathname.replace(/\/+$/, '')
-  return path || '/'
+const DEFAULT_WORK_CATEGORY = 'motion'
+
+const WORK_CATEGORY_ROUTES = {
+  motion: '/work/motion-graphics',
+  short_form: '/work/short-form-ads',
 }
+
+const WORK_ROUTE_CATEGORIES = Object.entries(WORK_CATEGORY_ROUTES).reduce((routes, [category, path]) => {
+  routes[path] = category
+  return routes
+}, {})
+
+const getWorkRoute = (path) => {
+  if (path !== '/work' && !path.startsWith('/work/')) return null
+
+  const category = WORK_ROUTE_CATEGORIES[path] || DEFAULT_WORK_CATEGORY
+  return {
+    category,
+    canonicalPath: WORK_CATEGORY_ROUTES[category],
+  }
+}
+
+const normalizePath = (path) => {
+  const normalizedPath = path.replace(/\/+$/, '')
+  return normalizedPath || '/'
+}
+
+const getCanonicalRoute = (path) => {
+  const normalizedPath = normalizePath(path)
+  return getWorkRoute(normalizedPath)?.canonicalPath || normalizedPath
+}
+
+const getCurrentRoute = () => getCanonicalRoute(window.location.pathname)
 
 function App() {
   const [view, setView] = useState({ type: 'home', category: null })
@@ -23,16 +52,36 @@ function App() {
   }, [view.type])
 
   useEffect(() => {
+    const currentPath = normalizePath(window.location.pathname)
+    const canonicalPath = getCanonicalRoute(currentPath)
+
+    if (canonicalPath !== currentPath) {
+      window.history.replaceState({}, '', canonicalPath)
+    }
+
     const handlePopState = () => {
-      setRoute(getCurrentRoute())
+      const nextPath = normalizePath(window.location.pathname)
+      const canonicalNextPath = getCanonicalRoute(nextPath)
+
+      if (canonicalNextPath !== nextPath) {
+        window.history.replaceState({}, '', canonicalNextPath)
+      }
+
+      setRoute(canonicalNextPath)
     }
 
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
 
-  const handleViewAll = (category) => {
-    setView({ type: 'archive', category })
+  const handleWorkCategoryChange = (category) => {
+    const nextRoute = WORK_CATEGORY_ROUTES[category] || WORK_CATEGORY_ROUTES[DEFAULT_WORK_CATEGORY]
+
+    setView({ type: 'home', category: null })
+    if (getCurrentRoute() !== nextRoute) {
+      window.history.pushState({}, '', nextRoute)
+      setRoute(nextRoute)
+    }
   }
 
   const handleBackToHome = (section = null) => {
@@ -58,14 +107,19 @@ function App() {
   }
 
   const isCvRoute = route === '/cv'
+  const workRoute = getWorkRoute(route)
+  const activeWorkCategory = workRoute?.category || DEFAULT_WORK_CATEGORY
 
   return (
     <Layout onLogoClick={handleBackToHome}>
       {isCvRoute ? (
         <CvView />
-      ) : view.type === 'home' ? (
+      ) : view.type === 'home' || workRoute ? (
         <>
-          <ProjectGrid />
+          <ProjectGrid
+            activeCategory={activeWorkCategory}
+            onCategoryChange={handleWorkCategoryChange}
+          />
           <About />
           <Contact />
         </>

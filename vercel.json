@@ -7,6 +7,14 @@
     {
       "source": "/cv/",
       "destination": "/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/:path*",
+      "destination": "/index.html"
     }
   ]
 }

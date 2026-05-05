@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/cv",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/cv/",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -50,6 +50,16 @@ const About = () => {
                                 {t.about.bio}
                             </div>
                         </ScrollReveal>
+
+                        <ScrollReveal delay={0.7}>
+                            <a
+                                href="/cv"
+                                className="group inline-flex items-center gap-4 px-8 py-4 border border-black/10 dark:border-white/10 text-[10px] font-bold tracking-[0.35em] uppercase hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-500 text-black dark:text-white"
+                            >
+                                <span>{t.about.cv_button}</span>
+                                <span className="h-px w-10 bg-current transition-all duration-300 group-hover:w-14"></span>
+                            </a>
+                        </ScrollReveal>
                     </div>
                 </div>
             </div>

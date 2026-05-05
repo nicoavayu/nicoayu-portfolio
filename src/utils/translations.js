@@ -3,7 +3,8 @@ export const translations = {
         nav: {
             work: 'WORK',
             about: 'About',
-            contact: 'Contact'
+            contact: 'Contact',
+            cv: 'CV'
         },
         about: {
             title_part1: 'ABOUT',
@@ -11,7 +12,17 @@ export const translations = {
             headline: 'Senior Motion Designer & Video Editor',
             secondary_roles: 'Graphic Designer · Brand Designer · UX Developer · Web Designer',
             bio: 'Senior Motion Designer & Video Editor with over 15 years of experience across television, social media, and brand content. Strong background in graphic design and brand development, applied to motion graphics, video, and digital products.\n\nThat same approach extends to web design and UX for mobile applications, covering visual design and, when required, front-end implementation.',
-            focus: 'Focus'
+            focus: 'Focus',
+            cv_button: 'View CV'
+        },
+        cv: {
+            eyebrow: 'Curriculum Vitae',
+            title_part1: 'NICO',
+            title_part2: 'AVAYÚ',
+            lead: 'A direct PDF view of my professional profile, experience, and selected capabilities.',
+            open_pdf: 'Open PDF',
+            pdf_label: 'Nico Avayú CV PDF',
+            fallback: 'Your browser cannot display the PDF preview here. Open the PDF directly to view the CV.'
         },
         categories: {
             motion: 'Motion Graphics',
@@ -65,7 +76,8 @@ export const translations = {
         nav: {
             work: 'PROYECTOS',
             about: 'Sobre mí',
-            contact: 'Contacto'
+            contact: 'Contacto',
+            cv: 'CV'
         },
         about: {
             title_part1: 'SOBRE',
@@ -73,7 +85,17 @@ export const translations = {
             headline: 'Senior Motion Designer & Editor de Video',
             secondary_roles: 'Diseñador Gráfico · Diseñador de Marca · Desarrollador UX · Diseñador Web',
             bio: 'Senior Motion Designer & Video Editor con más de 15 años de experiencia en televisión, redes sociales y contenido de marca. Background en diseño gráfico y desarrollo de marca, aplicado a motion graphics, video y productos digitales.\n\nEse mismo enfoque se extiende al diseño de sitios web y UX para aplicaciones mobile, abarcando diseño visual y, cuando el proyecto lo requiere, implementación front-end.',
-            focus: 'Enfoque'
+            focus: 'Enfoque',
+            cv_button: 'Ver CV'
+        },
+        cv: {
+            eyebrow: 'Curriculum Vitae',
+            title_part1: 'NICO',
+            title_part2: 'AVAYÚ',
+            lead: 'Vista directa en PDF de mi perfil profesional, experiencia y capacidades principales.',
+            open_pdf: 'Abrir PDF',
+            pdf_label: 'CV de Nico Avayú en PDF',
+            fallback: 'Tu navegador no puede mostrar la vista previa del PDF acá. Abrí el PDF directamente para ver el CV.'
         },
         categories: {
             motion: 'Motion Graphics',
@@ -124,5 +146,4 @@ export const translations = {
         }
     }
 }
-
 

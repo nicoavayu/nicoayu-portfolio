@@ -39,6 +39,7 @@ const Header = ({ onLogoClick }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const { language, setLanguage, t } = useLanguage()
     const { theme, toggleTheme } = useTheme()
+    const sectionNavItems = ['work', 'about', 'contact']
 
     useEffect(() => {
         const handleScroll = () => {
@@ -88,7 +89,7 @@ const Header = ({ onLogoClick }) => {
                 {/* Left: Desktop Nav / Mobile Placeholder */}
                 <div className="w-12 lg:w-[420px] flex items-center">
                     <nav className="hidden lg:flex justify-between text-[10px] font-bold tracking-[0.2em] uppercase z-10 w-full">
-                        {['work', 'about', 'contact'].map((item) => (
+                        {sectionNavItems.map((item) => (
                             <motion.a
                                 key={item}
                                 href={`#${item}`}
@@ -101,6 +102,15 @@ const Header = ({ onLogoClick }) => {
                                 {t.nav[item]}
                             </motion.a>
                         ))}
+                        <motion.a
+                            href="/cv"
+                            className="hover:text-[#f97316] transition-colors duration-300 text-black dark:text-white whitespace-nowrap"
+                            whileHover={{ scale: 1.1, y: -2 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                            {t.nav.cv}
+                        </motion.a>
                     </nav>
                 </div>
 
@@ -212,7 +222,7 @@ const Header = ({ onLogoClick }) => {
                         className="fixed inset-0 bg-white dark:bg-black z-40 flex flex-col items-center justify-center lg:hidden"
                     >
                         <nav className="flex flex-col items-center gap-8 mb-12">
-                            {['work', 'about', 'contact'].map((item, index) => (
+                            {sectionNavItems.map((item, index) => (
                                 <motion.a
                                     key={item}
                                     href={`#${item}`}
@@ -225,6 +235,16 @@ const Header = ({ onLogoClick }) => {
                                     {t.nav[item]}
                                 </motion.a>
                             ))}
+                            <motion.a
+                                href="/cv"
+                                onClick={() => setIsMenuOpen(false)}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="text-2xl font-black tracking-widest uppercase text-black dark:text-white hover:text-[#f97316] transition-colors"
+                            >
+                                {t.nav.cv}
+                            </motion.a>
                         </nav>
 
                         <motion.div

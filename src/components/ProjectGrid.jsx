@@ -214,6 +214,36 @@ export const PROJECTS = [
 
     // Short-Form Ads Section
     {
+        id: 's23',
+        title: 'Sockets',
+        year: '2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/sockets-basta-ai.mp4',
+        videoUrl: '/videos/social media/sockets-basta-ai.mp4',
+        poster: '/images/_stills_ads/sockets-basta-ai.jpg',
+        details: {
+            role: 'AI Video Creator, Video Editor & Motion Designer',
+            scope: 'AI Concept Development, Generative Video, Video Editing, Motion Graphics, Sound Design, Final Delivery.',
+            context: 'AI-led short-form commercial created for Sockets, using surreal everyday scenarios and visual humor to turn a simple product benefit into a memorable social campaign.'
+        }
+    },
+    {
+        id: 's24',
+        title: 'Sanma',
+        year: '2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/sanma.mp4',
+        videoUrl: '/videos/social media/sanma.mp4',
+        poster: '/images/_stills_ads/sanma.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Typography, Color, Sound Design, Final Delivery.',
+            context: 'Editorial short-form food piece centered on Japanese pike mackerel preparation, using tactile close-ups and restrained typography to create a premium social-first rhythm.'
+        }
+    },
+    {
         id: 's1',
         title: 'Alpecin',
         year: '2020–2026',

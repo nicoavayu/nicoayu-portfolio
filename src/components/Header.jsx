@@ -2,282 +2,262 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
 import { useTheme } from '../context/ThemeContext'
+import { SECTIONS, EMAIL, SOCIAL_LINKS } from '../data/site'
+import { ArrowUpRight, Moon, Sun } from './Icons'
 
-const ThemeToggle = ({ theme, toggleTheme }) => {
+const EASE_OUT_EXPO = [0.16, 1, 0.3, 1]
+
+const ThemeToggle = () => {
+    const { theme, toggleTheme } = useTheme()
+    const { t } = useLanguage()
+
     return (
         <button
+            type="button"
             onClick={toggleTheme}
-            className="relative w-12 h-6 rounded-full bg-black/10 dark:bg-white/10 flex items-center px-1 transition-colors duration-300 group"
-            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label={t.nav.theme}
+            title={t.nav.theme}
+            className="grid h-9 w-9 place-items-center rounded-full border border-line/15 text-fg transition-colors duration-300 hover:border-fg"
         >
-            <motion.div
-                layout
-                initial={false}
-                animate={{
-                    x: theme === 'dark' ? 24 : 0,
-                    backgroundColor: theme === 'dark' ? '#f97316' : '#94a3b8'
-                }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                className="w-4 h-4 rounded-full flex items-center justify-center shadow-sm"
-            >
-                {theme === 'dark' ? (
-                    <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 fill-black">
-                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-11.314l.707.707m11.314 11.314l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
-                    </svg>
-                ) : (
-                    <svg viewBox="0 0 24 24" className="w-2.5 h-2.5 fill-white">
-                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-                    </svg>
-                )}
-            </motion.div>
+            <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                    key={theme}
+                    initial={{ opacity: 0, rotate: -60, scale: 0.6 }}
+                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                    exit={{ opacity: 0, rotate: 60, scale: 0.6 }}
+                    transition={{ duration: 0.25 }}
+                >
+                    {theme === 'dark' ? <Sun /> : <Moon />}
+                </motion.span>
+            </AnimatePresence>
         </button>
     )
 }
 
-const Header = ({ onLogoClick }) => {
+const LanguageSwitch = () => {
+    const { language, setLanguage, t } = useLanguage()
+
+    return (
+        <div role="group" aria-label={t.nav.language} className="flex h-9 items-center rounded-full border border-line/15 p-1 font-mono text-[11px]">
+            {['en', 'es'].map((code) => (
+                <button
+                    key={code}
+                    type="button"
+                    onClick={() => setLanguage(code)}
+                    aria-pressed={language === code}
+                    className={`relative h-full rounded-full px-2.5 uppercase transition-colors duration-300 ${language === code ? 'text-bg' : 'text-muted hover:text-fg'}`}
+                >
+                    {language === code && (
+                        <motion.span
+                            layoutId="languagePill"
+                            className="absolute inset-0 rounded-full bg-fg"
+                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                        />
+                    )}
+                    <span className="relative">{code}</span>
+                </button>
+            ))}
+        </div>
+    )
+}
+
+const Header = ({ onNavigate, showSections = true }) => {
     const [scrolled, setScrolled] = useState(false)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const { language, setLanguage, t } = useLanguage()
-    const { theme, toggleTheme } = useTheme()
-    const sectionNavItems = ['work', 'about', 'contact']
+    const [activeSection, setActiveSection] = useState(null)
+    const { t } = useLanguage()
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50)
-        }
-        window.addEventListener('scroll', handleScroll)
+        const handleScroll = () => setScrolled(window.scrollY > 24)
+        handleScroll()
+        window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    const handleNavClick = (e) => {
-        const href = e.currentTarget.getAttribute('href')
-        if (href && href.startsWith('#')) {
-            e.preventDefault()
-            const section = href.substring(1)
+    // Highlight the nav item for the section currently in view
+    useEffect(() => {
+        if (!showSections) return
 
-            // Close mobile menu if open
-            setIsMenuOpen(false)
-
-            // Smooth scroll to section with offset for fixed header
-            const element = document.getElementById(section)
-            if (element) {
-                const headerOffset = 100
-                const elementPosition = element.getBoundingClientRect().top
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) setActiveSection(entry.target.id)
                 })
-            } else {
-                // If section doesn't exist, trigger onLogoClick
-                onLogoClick?.(section)
-            }
-        }
+            },
+            { rootMargin: '-45% 0px -50% 0px' }
+        )
+
+        SECTIONS.forEach((id) => {
+            const element = document.getElementById(id)
+            if (element) observer.observe(element)
+        })
+
+        return () => observer.disconnect()
+    }, [showSections])
+
+    useEffect(() => {
+        document.body.style.overflow = isMenuOpen ? 'hidden' : ''
+        return () => { document.body.style.overflow = '' }
+    }, [isMenuOpen])
+
+    const handleNavClick = (event, section) => {
+        event.preventDefault()
+        setIsMenuOpen(false)
+        onNavigate?.(section)
     }
 
-    return (
-        <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-                ? 'bg-white/95 dark:bg-black/95 backdrop-blur-md py-2 shadow-xl'
-                : 'bg-transparent py-6'
-                }`}
-        >
-            <div className={`flex items-center justify-between pl-6 md:pl-12 pr-6 md:pr-12 max-w-[1920px] mx-auto transition-all duration-500 ${scrolled ? 'min-h-[60px] md:min-h-[70px]' : 'min-h-[100px] md:min-h-[120px]'
-                }`}>
+    const currentSection = showSections ? activeSection : null
 
-                {/* Left: Desktop Nav / Mobile Placeholder */}
-                <div className="w-12 lg:w-[420px] flex items-center">
-                    <nav className="hidden lg:flex justify-between text-[10px] font-bold tracking-[0.2em] uppercase z-10 w-full">
-                        {sectionNavItems.map((item) => (
-                            <motion.a
-                                key={item}
-                                href={`#${item}`}
-                                onClick={handleNavClick}
-                                className="hover:text-[#f97316] transition-colors duration-300 text-black dark:text-white whitespace-nowrap"
-                                whileHover={{ scale: 1.1, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+    const navItems = SECTIONS.map((section, index) => ({
+        id: section,
+        href: `/#${section}`,
+        label: t.nav[section],
+        index: String(index + 1).padStart(2, '0'),
+    }))
+
+    return (
+        <header className="fixed inset-x-0 top-0 z-50">
+            <div
+                className={`border-b transition-[background-color,border-color,backdrop-filter] duration-500 ${scrolled || isMenuOpen
+                    ? 'border-line/10 bg-bg/80 backdrop-blur-xl'
+                    : 'border-transparent bg-transparent'
+                    }`}
+            >
+                <div className={`container-x relative flex items-center justify-between gap-6 transition-[height] duration-500 ${scrolled || isMenuOpen ? 'h-16' : 'h-16 md:h-20'}`}>
+                    {/* Logo */}
+                    <a
+                        href="/"
+                        onClick={(event) => handleNavClick(event, null)}
+                        className="group flex items-center gap-3"
+                        aria-label="Nico Avayú — Home"
+                    >
+                        <img
+                            src="/images/logo_small.png"
+                            alt=""
+                            className="h-8 w-auto invert transition-transform duration-500 ease-out-expo group-hover:rotate-[-8deg] dark:invert-0"
+                        />
+                        <span className="font-display text-[15px] font-semibold uppercase tracking-[0.02em] text-fg">
+                            Nico Avayú
+                        </span>
+                    </a>
+
+                    {/* Desktop nav */}
+                    <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 lg:flex" aria-label="Primary">
+                        {navItems.map((item) => (
+                            <a
+                                key={item.id}
+                                href={item.href}
+                                onClick={(event) => handleNavClick(event, item.id)}
+                                aria-current={currentSection === item.id ? 'true' : undefined}
+                                className={`group relative flex items-baseline gap-1.5 rounded-full px-4 py-2 text-sm transition-colors duration-300 ${currentSection === item.id ? 'text-fg' : 'text-muted hover:text-fg'}`}
                             >
-                                {t.nav[item]}
-                            </motion.a>
+                                <span className="font-mono text-[10px] text-accent-ink">{item.index}</span>
+                                {item.label}
+                                {currentSection === item.id && (
+                                    <motion.span
+                                        layoutId="navIndicator"
+                                        className="absolute inset-x-4 -bottom-0.5 h-px bg-fg"
+                                        transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                                    />
+                                )}
+                            </a>
                         ))}
-                        <motion.a
+                        <a
                             href="/cv"
-                            className="hover:text-[#f97316] transition-colors duration-300 text-black dark:text-white whitespace-nowrap"
-                            whileHover={{ scale: 1.1, y: -2 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            className="flex items-center gap-1 rounded-full px-4 py-2 text-sm text-muted transition-colors duration-300 hover:text-fg"
                         >
                             {t.nav.cv}
-                        </motion.a>
+                            <ArrowUpRight className="h-3.5 w-3.5" />
+                        </a>
                     </nav>
-                </div>
 
-                {/* Center: Logo */}
-                <div className="flex-1 flex justify-center">
-                    <motion.a
-                        href="#"
-                        onClick={(e) => { e.preventDefault(); onLogoClick?.() }}
-                        className="group flex items-center gap-3 md:gap-4"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.98 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                        <motion.img
-                            src="/images/logo_small.png"
-                            alt="NIXON"
-                            className={`w-auto object-contain transition-all duration-500 ${scrolled ? 'h-8 md:h-10' : 'h-12 md:h-16'} ${theme === 'dark' ? 'invert-0' : 'invert'}`}
-                            whileHover={{
-                                filter: 'invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(98%) contrast(97%)'
-                            }}
-                            transition={{ duration: 0.3 }}
-                        />
-                        <div className={`flex flex-col justify-center transition-all duration-500 ${scrolled ? 'gap-0' : 'gap-0.5'}`}>
-                            <motion.span
-                                className={`font-light tracking-[0.3em] uppercase text-black dark:text-white transition-all duration-500 ${scrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'}`}
-                                whileHover={{ color: '#f97316' }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                NICO
-                            </motion.span>
-                            <motion.span
-                                className={`font-light tracking-[0.3em] uppercase text-black dark:text-white transition-all duration-500 ${scrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'}`}
-                                whileHover={{ color: '#f97316' }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                AVAYÚ
-                            </motion.span>
+                    {/* Controls */}
+                    <div className="flex items-center gap-2">
+                        <div className="hidden items-center gap-2 lg:flex">
+                            <LanguageSwitch />
+                            <ThemeToggle />
                         </div>
-                    </motion.a>
-                </div>
+                        <a
+                            href="/#contact"
+                            onClick={(event) => handleNavClick(event, 'contact')}
+                            className="hidden h-9 items-center gap-2 rounded-full bg-fg px-4 text-sm font-medium text-bg transition-transform duration-300 hover:scale-[1.03] md:inline-flex"
+                        >
+                            <span className="relative flex h-1.5 w-1.5">
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                            </span>
+                            {t.nav.cta}
+                        </a>
 
-                {/* Right: Desktop Controls / Mobile Hamburger */}
-                <div className="w-12 lg:w-[420px] flex items-center justify-end">
-                    {/* Desktop Controls */}
-                    <div className={`hidden lg:flex flex-col items-end justify-center w-full transition-all duration-500 ${scrolled ? 'gap-1' : 'gap-2 pt-1'}`}>
-                        {/* Refined Language Toggle */}
-                        <div className="flex flex-col items-end">
-                            <div className="flex items-center gap-2">
-                                <motion.button
-                                    onClick={() => setLanguage('en')}
-                                    className={`text-sm font-bold transition-all duration-300 ${language === 'en' ? 'text-[#f97316]' : 'opacity-30 hover:opacity-100 text-black dark:text-white'}`}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                >
-                                    EN
-                                </motion.button>
-                                <span className="text-gray-400 dark:text-gray-600 font-light mx-1">|</span>
-                                <motion.button
-                                    onClick={() => setLanguage('es')}
-                                    className={`text-sm font-bold transition-all duration-300 ${language === 'es' ? 'text-[#f97316]' : 'opacity-30 hover:opacity-100 text-black dark:text-white'}`}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                >
-                                    ES
-                                </motion.button>
-                            </div>
-                        </div>
-
-                        {/* Theme Toggle Switch */}
-                        <div className="flex justify-end w-full">
-                            <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                        </div>
+                        {/* Mobile menu button */}
+                        <button
+                            type="button"
+                            onClick={() => setIsMenuOpen(open => !open)}
+                            className="flex h-9 items-center gap-2 rounded-full border border-line/15 px-4 text-sm text-fg lg:hidden"
+                            aria-expanded={isMenuOpen}
+                            aria-controls="mobile-menu"
+                        >
+                            {isMenuOpen ? t.nav.close : t.nav.menu}
+                            <span className="relative block h-2.5 w-3.5" aria-hidden="true">
+                                <motion.span
+                                    animate={isMenuOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
+                                    className="absolute left-0 top-0 block h-px w-full bg-current"
+                                />
+                                <motion.span
+                                    animate={isMenuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+                                    className="absolute bottom-0 left-0 block h-px w-full bg-current"
+                                />
+                            </span>
+                        </button>
                     </div>
-
-                    {/* Mobile Hamburger Button */}
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden z-50 p-2 text-black dark:text-white"
-                        aria-label="Toggle Menu"
-                    >
-                        <div className="w-6 h-5 relative flex flex-col justify-between">
-                            <motion.span
-                                animate={isMenuOpen ? { rotate: 45, y: 9 } : { rotate: 0, y: 0 }}
-                                className="w-full h-0.5 bg-current block origin-left"
-                            />
-                            <motion.span
-                                animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-                                className="w-full h-0.5 bg-current block"
-                            />
-                            <motion.span
-                                animate={isMenuOpen ? { rotate: -45, y: -9 } : { rotate: 0, y: 0 }}
-                                className="w-full h-0.5 bg-current block origin-left"
-                            />
-                        </div>
-                    </button>
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile menu */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, x: '100%' }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 bg-white dark:bg-black z-40 flex flex-col items-center justify-center lg:hidden"
+                        id="mobile-menu"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-bg lg:hidden"
                     >
-                        <nav className="flex flex-col items-center gap-8 mb-12">
-                            {sectionNavItems.map((item, index) => (
+                        <nav className="container-x flex flex-col pt-8" aria-label="Mobile">
+                            {[...navItems, { id: 'cv', href: '/cv', label: t.nav.cv, index: '04' }].map((item, index) => (
                                 <motion.a
-                                    key={item}
-                                    href={`#${item}`}
-                                    onClick={handleNavClick}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    key={item.id}
+                                    href={item.href}
+                                    onClick={item.id === 'cv' ? () => setIsMenuOpen(false) : (event) => handleNavClick(event, item.id)}
+                                    initial={{ opacity: 0, y: 24 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 + index * 0.1 }}
-                                    className="text-2xl font-black tracking-widest uppercase text-black dark:text-white hover:text-[#f97316] transition-colors"
+                                    transition={{ delay: 0.05 + index * 0.06, duration: 0.6, ease: EASE_OUT_EXPO }}
+                                    className="flex items-baseline justify-between border-b border-line/10 py-5 font-display text-4xl font-bold uppercase text-fg sm:text-5xl"
                                 >
-                                    {t.nav[item]}
+                                    {item.label}
+                                    <span className="font-mono text-xs font-normal text-accent-ink">{item.index}</span>
                                 </motion.a>
                             ))}
-                            <motion.a
-                                href="/cv"
-                                onClick={() => setIsMenuOpen(false)}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
-                                className="text-2xl font-black tracking-widest uppercase text-black dark:text-white hover:text-[#f97316] transition-colors"
-                            >
-                                {t.nav.cv}
-                            </motion.a>
                         </nav>
 
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                            className="flex flex-col items-center gap-6 border-t border-black/10 dark:border-white/10 pt-12 w-64"
+                            transition={{ delay: 0.35 }}
+                            className="container-x mt-auto flex flex-col gap-6 pb-10 pt-12"
                         >
-                            <div className="flex items-center gap-8">
-                                <motion.button
-                                    onClick={() => setLanguage('en')}
-                                    className={`text-xl font-bold transition-all ${language === 'en' ? 'text-[#f97316] scale-110' : 'opacity-30 text-black dark:text-white'}`}
-                                    whileHover={{ scale: 1.15 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                >
-                                    EN
-                                </motion.button>
-                                <span className="text-gray-400 px-2">|</span>
-                                <motion.button
-                                    onClick={() => setLanguage('es')}
-                                    className={`text-xl font-bold transition-all ${language === 'es' ? 'text-[#f97316] scale-110' : 'opacity-30 text-black dark:text-white'}`}
-                                    whileHover={{ scale: 1.15 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                                >
-                                    ES
-                                </motion.button>
+                            <a href={`mailto:${EMAIL}`} className="text-lg text-fg">{EMAIL}</a>
+                            <div className="flex gap-5">
+                                {SOCIAL_LINKS.map((social) => (
+                                    <a key={social.label} href={social.href} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-sm text-muted">
+                                        {social.label} <ArrowUpRight className="h-3.5 w-3.5" />
+                                    </a>
+                                ))}
                             </div>
-
-                            <div className="flex items-center gap-4">
-                                <span className="text-[10px] uppercase tracking-widest opacity-50 font-bold">Theme</span>
-                                <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+                            <div className="flex items-center gap-2">
+                                <LanguageSwitch />
+                                <ThemeToggle />
                             </div>
                         </motion.div>
                     </motion.div>

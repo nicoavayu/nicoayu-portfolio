@@ -1,14 +1,20 @@
 import Header from './Header'
 import Footer from './Footer'
 
-const Layout = ({ children, onLogoClick }) => {
+const Layout = ({ children, onNavigate, showSections }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-white text-black dark:bg-black dark:text-white selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500">
-            <Header onLogoClick={onLogoClick} />
-            <main className="flex-grow pt-32 px-4 md:px-12 max-w-[1920px] mx-auto w-full">
+        <div className="flex min-h-screen flex-col">
+            <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
+            >
+                Skip to content
+            </a>
+            <Header onNavigate={onNavigate} showSections={showSections} />
+            <main id="main" className="flex-grow">
                 {children}
             </main>
-            <Footer onLogoClick={onLogoClick} />
+            <Footer onNavigate={onNavigate} />
         </div>
     )
 }

@@ -1,57 +1,56 @@
 import ScrollReveal from './ScrollReveal'
 import { useLanguage } from '../context/LanguageContext'
-
-const CV_PDF_PATH = '/Nicoavayu_cv.pdf'
+import { CV_PDF_PATH } from '../data/site'
+import { ArrowUpRight, Download } from './Icons'
 
 const CvView = () => {
     const { t } = useLanguage()
 
     return (
-        <section className="pt-10 pb-20">
+        <section className="container-x pb-24 pt-28 md:pt-36">
             <ScrollReveal width="100%">
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-10">
+                <div className="mb-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end md:mb-14">
                     <div className="max-w-3xl">
-                        <p className="text-xs md:text-sm text-[#f97316] font-bold tracking-[0.35em] uppercase mb-4">
+                        <p className="eyebrow flex items-center gap-2.5 text-fg">
+                            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                             {t.cv.eyebrow}
                         </p>
-                        <h1 className="text-4xl md:text-7xl font-bold tracking-tighter uppercase leading-none text-black dark:text-white transition-colors duration-500">
-                            {t.cv.title_part1} <span className="text-[#f97316]">{t.cv.title_part2}</span>
+                        <h1 className="mt-6 font-display text-[clamp(3rem,8vw,7.5rem)] font-extrabold uppercase leading-[0.86] text-fg">
+                            {t.cv.title_part1} <span className="text-accent">{t.cv.title_part2}</span>
                         </h1>
-                        <p className="mt-6 text-gray-600 dark:text-gray-400 text-lg md:text-xl font-light transition-colors duration-500">
+                        <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl text-pretty">
                             {t.cv.lead}
                         </p>
                     </div>
 
-                    <a
-                        href={CV_PDF_PATH}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group inline-flex items-center gap-4 px-8 py-4 border border-black/10 dark:border-white/10 text-[10px] font-bold tracking-[0.35em] uppercase hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-500 text-black dark:text-white"
-                    >
-                        <span>{t.cv.open_pdf}</span>
-                        <span className="h-px w-10 bg-current transition-all duration-300 group-hover:w-14"></span>
-                    </a>
+                    <div className="flex flex-wrap gap-3">
+                        <a href={CV_PDF_PATH} download className="btn-primary">
+                            {t.cv.download}
+                            <Download className="h-4 w-4" />
+                        </a>
+                        <a href={CV_PDF_PATH} target="_blank" rel="noreferrer" className="btn-secondary">
+                            {t.cv.open_pdf}
+                            <ArrowUpRight className="h-4 w-4" />
+                        </a>
+                    </div>
                 </div>
             </ScrollReveal>
 
-            <ScrollReveal width="100%" delay={0.15}>
-                <div className="relative overflow-hidden rounded-[2rem] border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.03] shadow-2xl transition-colors duration-500">
-                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#f97316] via-[#ea580c] to-[#f97316]"></div>
+            <ScrollReveal width="100%" delay={0.1}>
+                <div className="overflow-hidden rounded-2xl border border-line/10 bg-surface shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)]">
                     <object
                         data={`${CV_PDF_PATH}#view=FitH`}
                         type="application/pdf"
-                        className="h-[72vh] min-h-[520px] w-full"
+                        className="h-[78vh] min-h-[520px] w-full"
                         aria-label={t.cv.pdf_label}
                     >
                         <div className="flex min-h-[520px] flex-col items-center justify-center gap-6 p-10 text-center">
-                            <p className="max-w-xl text-lg font-light text-gray-600 dark:text-gray-400">
+                            <p className="max-w-xl text-lg text-muted">
                                 {t.cv.fallback}
                             </p>
-                            <a
-                                href={CV_PDF_PATH}
-                                className="px-8 py-4 border border-black/10 dark:border-white/10 text-[10px] font-bold tracking-[0.35em] uppercase hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all duration-500 text-black dark:text-white"
-                            >
+                            <a href={CV_PDF_PATH} className="btn-secondary">
                                 {t.cv.open_pdf}
+                                <ArrowUpRight className="h-4 w-4" />
                             </a>
                         </div>
                     </object>

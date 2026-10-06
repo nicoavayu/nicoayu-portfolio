@@ -4,31 +4,46 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/images/logo_small.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F5F2" media="(prefers-color-scheme: light)" />
+
     <!-- Primary Meta Tags -->
-    <title>Nico Avayú - Motion Designer & Video Editor Portfolio</title>
-    <meta name="title" content="Nico Avayú - Motion Designer & Video Editor Portfolio" />
-    <meta name="description" content="Award-winning motion designer and video editor specializing in motion graphics, short-form ads, and multimedia design. Based in Buenos Aires, Argentina." />
+    <title>Nico Avayú — Senior Motion Designer & Video Editor</title>
+    <meta name="title" content="Nico Avayú — Senior Motion Designer & Video Editor" />
+    <meta name="description" content="Senior motion designer and video editor with 15+ years creating motion graphics, broadcast packages and short-form ads for TV, sports networks and brands. Based in Buenos Aires, Argentina." />
     <meta name="keywords" content="motion graphics, video editing, motion designer, video editor, multimedia design, after effects, premiere pro, short-form ads, social media content, Buenos Aires" />
     <meta name="author" content="Nico Avayú" />
-    
+    <link rel="canonical" href="https://nicoavayu.com/" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nicoavayu.com/" />
-    <meta property="og:title" content="Nico Avayú - Motion Designer & Video Editor Portfolio" />
-    <meta property="og:description" content="Award-winning motion designer and video editor specializing in motion graphics, short-form ads, and multimedia design." />
-    <meta property="og:image" content="/images/imagen perfil.png" />
-    
+    <meta property="og:title" content="Nico Avayú — Senior Motion Designer & Video Editor" />
+    <meta property="og:description" content="Motion graphics, broadcast packages and short-form ads for TV, sports networks and brands." />
+    <meta property="og:image" content="https://nicoavayu.com/images/profile.png" />
+
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://nicoavayu.com/" />
-    <meta property="twitter:title" content="Nico Avayú - Motion Designer & Video Editor Portfolio" />
-    <meta property="twitter:description" content="Award-winning motion designer and video editor specializing in motion graphics, short-form ads, and multimedia design." />
-    <meta property="twitter:image" content="/images/imagen perfil.png" />
-    
-    <!-- Preconnect for Performance -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://nicoavayu.com/" />
+    <meta name="twitter:title" content="Nico Avayú — Senior Motion Designer & Video Editor" />
+    <meta name="twitter:description" content="Motion graphics, broadcast packages and short-form ads for TV, sports networks and brands." />
+    <meta name="twitter:image" content="https://nicoavayu.com/images/profile.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Geist+Mono:wght@400;500&family=Geist:wght@300..700&display=swap" rel="stylesheet" />
+
+    <!-- Apply the saved/system theme before first paint to avoid a flash -->
+    <script>
+      try {
+        var savedTheme = localStorage.getItem('theme')
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.documentElement.classList.add('dark')
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
+import { MotionConfig } from 'framer-motion'
 import Layout from './components/Layout'
+import Hero from './components/Hero'
 import ProjectGrid from './components/ProjectGrid'
+import ProjectModal from './components/ProjectModal'
 import About from './components/About'
 import Contact from './components/Contact'
-import ArchiveView from './components/ArchiveView'
 import CvView from './components/CvView'
 
 const DEFAULT_WORK_CATEGORY = 'motion'
@@ -40,16 +42,15 @@ const getCanonicalRoute = (path) => {
 
 const getCurrentRoute = () => getCanonicalRoute(window.location.pathname)
 
-function App() {
-  const [view, setView] = useState({ type: 'home', category: null })
-  const [route, setRoute] = useState(getCurrentRoute)
+const scrollToSection = (section, behavior = 'smooth') => {
+  const element = document.getElementById(section)
+  element?.scrollIntoView({ behavior })
+  return Boolean(element)
+}
 
-  // Only scroll to top when changing between home and archive types
-  useEffect(() => {
-    if (view.type === 'archive') {
-      window.scrollTo(0, 0)
-    }
-  }, [view.type])
+function App() {
+  const [route, setRoute] = useState(getCurrentRoute)
+  const [openProject, setOpenProject] = useState(null)
 
   useEffect(() => {
     const currentPath = normalizePath(window.location.pathname)
@@ -74,62 +75,66 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
 
+  // Shared links (/work/... or /#section) land on the matching section
+  useEffect(() => {
+    const section = window.location.hash.slice(1) || (getWorkRoute(getCurrentRoute()) ? 'work' : null)
+    if (!section) return
+
+    const timer = setTimeout(() => scrollToSection(section, 'auto'), 60)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleWorkCategoryChange = (category) => {
     const nextRoute = WORK_CATEGORY_ROUTES[category] || WORK_CATEGORY_ROUTES[DEFAULT_WORK_CATEGORY]
 
-    setView({ type: 'home', category: null })
     if (getCurrentRoute() !== nextRoute) {
       window.history.pushState({}, '', nextRoute)
       setRoute(nextRoute)
     }
   }
 
-  const handleBackToHome = (section = null) => {
-    if (section?.preventDefault) {
-      section.preventDefault()
-      section = null
-    }
+  const handleNavigate = (section = null) => {
+    const isCv = getCurrentRoute() === '/cv'
+
+    if (section && !isCv && scrollToSection(section)) return
 
     if (getCurrentRoute() !== '/') {
       window.history.pushState({}, '', section ? `/#${section}` : '/')
       setRoute('/')
     }
 
-    setView({ type: 'home', category: null })
     if (section) {
-      setTimeout(() => {
-        const el = document.getElementById(section)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
+      setTimeout(() => scrollToSection(section), 100)
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
+  const closeProject = useCallback(() => setOpenProject(null), [])
+
   const isCvRoute = route === '/cv'
-  const workRoute = getWorkRoute(route)
-  const activeWorkCategory = workRoute?.category || DEFAULT_WORK_CATEGORY
+  const activeWorkCategory = getWorkRoute(route)?.category || DEFAULT_WORK_CATEGORY
 
   return (
-    <Layout onLogoClick={handleBackToHome}>
-      {isCvRoute ? (
-        <CvView />
-      ) : view.type === 'home' || workRoute ? (
-        <>
-          <ProjectGrid
-            activeCategory={activeWorkCategory}
-            onCategoryChange={handleWorkCategoryChange}
-          />
-          <About />
-          <Contact />
-        </>
-      ) : (
-        <ArchiveView
-          category={view.category}
-          onBack={handleBackToHome}
-        />
-      )}
-    </Layout>
+    <MotionConfig reducedMotion="user">
+      <Layout onNavigate={handleNavigate} showSections={!isCvRoute}>
+        {isCvRoute ? (
+          <CvView />
+        ) : (
+          <>
+            <Hero onNavigate={handleNavigate} onOpenProject={setOpenProject} />
+            <ProjectGrid
+              activeCategory={activeWorkCategory}
+              onCategoryChange={handleWorkCategoryChange}
+              onOpenProject={setOpenProject}
+            />
+            <About onNavigate={handleNavigate} />
+            <Contact />
+          </>
+        )}
+      </Layout>
+      <ProjectModal project={openProject} onClose={closeProject} />
+    </MotionConfig>
   )
 }
 

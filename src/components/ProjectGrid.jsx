@@ -214,6 +214,21 @@ export const PROJECTS = [
 
     // Short-Form Ads Section
     {
+        id: 's25',
+        title: 'Founders',
+        year: '2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/founders.mp4',
+        videoUrl: '/videos/social media/founders.mp4',
+        poster: '/images/_stills_ads/founders.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Short-Form Editing, Animated Captions, Typography, Visual Pacing, Final Delivery.',
+            context: 'Vertical reel exploring content creation for founders, combining direct-to-camera storytelling with bold animated captions and dynamic pacing for social media.'
+        }
+    },
+    {
         id: 's23',
         title: 'Sockets',
         year: '2026',

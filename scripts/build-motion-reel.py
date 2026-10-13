@@ -59,7 +59,7 @@ def shot(project_id, client, source, start, frames, layout=FULL, speed=1.0, cent
 
 SHOTS = [
     shot('m3', 'ESPN', PREMIER_LEAGUE, 0.00, 36),                       # title card builds
-    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 14.00, 120),             # document, eye and InvGate card
+    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 14.00, 60),              # document flies into the eye
     # Fox is one continuous camera move, ramped so its slow drift never reads as a hold
     shot('m2', 'Fox Sports', FOX, 8.74, 51, speed=2.0),                 # crane down into the 3D studio
     shot('m2', 'Fox Sports', FOX, 12.15, 22),                           # logo forms on the phone
@@ -75,9 +75,8 @@ SHOTS = [
     shot('m1', 'Fit', FIT, 20.80, 73),                                  # product trails, walk, split screen
     # Outer panels: the bag appears and turns; middle panel: "Lower in calories than any other nut"
     shot('m5', 'Barukas', BARUKAS, 0.00, 63, layout=TRIPTYCH, center_start=7.70),
-    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 31.00, 60),              # dev request card into "Desarrollo"
+    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 36.00, 75),              # files fly past the camera
     shot('m15', 'APIMA', APIMA, 2.15, 46),                              # logo drawing itself
-    shot('m7', 'ESPN', LIGUE_1, 36.55, 21),                             # Ligue 1 wipe into the match card
 ]
 
 TRIPTYCH_GAP = 6  # black separator width in pixels at 1080p

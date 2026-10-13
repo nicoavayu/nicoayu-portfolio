@@ -4,7 +4,7 @@
     "mobile": "/videos/reel/motion-reel-720.mp4"
   },
   "poster": "/images/reel-poster.jpg",
-  "duration": 28.167,
+  "duration": 25.967,
   "cues": [
     {
       "id": "m3",
@@ -19,82 +19,77 @@
     {
       "id": "m2",
       "client": "Fox Sports",
-      "at": 5.2
+      "at": 3.2
     },
     {
       "id": "m2",
       "client": "Fox Sports",
-      "at": 6.9
+      "at": 4.9
     },
     {
       "id": "m2",
       "client": "Fox Sports",
-      "at": 7.633
+      "at": 5.633
     },
     {
       "id": "m2",
       "client": "Fox Sports",
-      "at": 7.933
+      "at": 5.933
     },
     {
       "id": "m9",
       "client": "Rebecca",
-      "at": 8.567
+      "at": 6.567
     },
     {
       "id": "m6",
       "client": "Gobierno de Buenos Aires",
-      "at": 10.3
+      "at": 8.3
     },
     {
       "id": "m6",
       "client": "Gobierno de Buenos Aires",
-      "at": 11.167
+      "at": 9.167
     },
     {
       "id": "m18",
       "client": "Orkos / InvGate",
-      "at": 12.3
+      "at": 10.3
     },
     {
       "id": "m8",
       "client": "ESET",
+      "at": 12.3
+    },
+    {
+      "id": "m11",
+      "client": "Asma Zero",
       "at": 14.3
     },
     {
       "id": "m11",
       "client": "Asma Zero",
-      "at": 16.3
-    },
-    {
-      "id": "m11",
-      "client": "Asma Zero",
-      "at": 17.8
+      "at": 15.8
     },
     {
       "id": "m1",
       "client": "Fit",
-      "at": 19.4
+      "at": 17.4
     },
     {
       "id": "m5",
       "client": "Barukas",
-      "at": 21.833
+      "at": 19.833
     },
     {
       "id": "m19",
       "client": "Orkos / InvGate",
-      "at": 23.933
+      "at": 21.933
     },
     {
       "id": "m15",
       "client": "APIMA",
-      "at": 25.933
-    },
-    {
-      "id": "m7",
-      "client": "ESPN",
-      "at": 27.467
+      "at": 24.433
     }
   ]
 }

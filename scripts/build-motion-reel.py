@@ -5,9 +5,10 @@ Edit SHOTS below and run:
 
     python3 scripts/build-motion-reel.py
 
-Each shot is (project id, client label, source video under public/, start second, length in frames at 30 fps,
-layout). Every shot should be moving from its first to its last frame: cut in when an animation starts and
-cut out before it settles or before the source's own transition begins.
+Each shot is a project id, client label, source video under public/, start second and length in frames at
+30 fps (plus optional layout, speed and triptych center). Every shot should be moving from its first to its
+last frame: cut in when an animation starts and cut out before it settles or before the source's own
+transition begins.
 
 Requires ffmpeg. Writes:
   public/videos/reel/motion-reel-1080.mp4   desktop loop
@@ -43,24 +44,40 @@ FULL = 'full'
 # Vertical (9:16) source repeated side by side so it fills the frame without stretching
 TRIPTYCH = 'triptych'
 
-# (project id, client, source video, start second, frames at 30 fps, layout)
+
+def shot(project_id, client, source, start, frames, layout=FULL, speed=1.0, center_start=None):
+    """One cut of the reel.
+
+    speed > 1 plays the source faster (a speed ramp keeps a slow camera move from reading as static).
+    For a triptych, center_start plays a different moment of the same source in the middle panel.
+    """
+    return {
+        'project_id': project_id, 'client': client, 'source': source, 'start': start,
+        'frames': frames, 'layout': layout, 'speed': speed, 'center_start': center_start,
+    }
+
+
 SHOTS = [
-    ('m3', 'ESPN', PREMIER_LEAGUE, 0.00, 36, FULL),                  # title card builds
-    ('m19', 'Orkos / InvGate', ORKOS_LOOP, 14.00, 120, FULL),        # document, eye and InvGate card
-    ('m2', 'Fox Sports', FOX, 8.74, 60, FULL),                       # crane down into the 3D studio
-    ('m9', 'Rebecca', REBECCA, 4.60, 52, FULL),                      # glitch into the logo
-    ('m6', 'Gobierno de Buenos Aires', GOV_BA, 22.93, 26, FULL),     # car with speed lines
-    ('m6', 'Gobierno de Buenos Aires', GOV_BA, 25.30, 34, FULL),     # glare, flash and crash
-    ('m18', 'Orkos / InvGate', ORKOS, 0.00, 60, FULL),               # "¿Ya usas Invgate?" until it lands
-    ('m8', 'ESET', ESET, 63.10, 60, FULL),                           # planet builds up
-    ('m11', 'Asma Zero', ASMA_ZERO, 5.93, 32, FULL),                 # logo builds
-    ('m11', 'Asma Zero', ASMA_ZERO, 30.25, 48, FULL),                # app screens scrolling
-    ('m1', 'Fit', FIT, 20.80, 73, FULL),                             # product trails, walk, split screen
-    ('m5', 'Barukas', BARUKAS, 1.00, 66, TRIPTYCH),                  # bag flies, nuts fall, logo builds
-    ('m19', 'Orkos / InvGate', ORKOS_LOOP, 31.00, 60, FULL),         # dev request card into "Desarrollo"
-    ('m12', 'BOA', BOA, 94.10, 29, FULL),                            # block transition into "10 years"
-    ('m15', 'APIMA', APIMA, 2.15, 46, FULL),                         # logo drawing itself
-    ('m7', 'ESPN', LIGUE_1, 36.55, 21, FULL),                        # Ligue 1 wipe into the match card
+    shot('m3', 'ESPN', PREMIER_LEAGUE, 0.00, 36),                       # title card builds
+    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 14.00, 120),             # document, eye and InvGate card
+    # Fox is one continuous camera move, ramped so its slow drift never reads as a hold
+    shot('m2', 'Fox Sports', FOX, 8.74, 51, speed=2.0),                 # crane down into the 3D studio
+    shot('m2', 'Fox Sports', FOX, 12.15, 22),                           # logo forms on the phone
+    shot('m2', 'Fox Sports', FOX, 12.88, 9, speed=9.5),                 # camera drift
+    shot('m2', 'Fox Sports', FOX, 15.73, 19),                           # push in to "Videollamada Fox"
+    shot('m9', 'Rebecca', REBECCA, 4.60, 52),                           # glitch into the logo
+    shot('m6', 'Gobierno de Buenos Aires', GOV_BA, 22.93, 26),          # car with speed lines
+    shot('m6', 'Gobierno de Buenos Aires', GOV_BA, 25.30, 34),          # glare, flash and crash
+    shot('m18', 'Orkos / InvGate', ORKOS, 0.00, 60),                    # "¿Ya usas Invgate?" until it lands
+    shot('m8', 'ESET', ESET, 63.10, 60),                                # planet builds up
+    shot('m11', 'Asma Zero', ASMA_ZERO, 5.93, 45),                      # logo builds and settles
+    shot('m11', 'Asma Zero', ASMA_ZERO, 30.25, 48),                     # app screens scrolling
+    shot('m1', 'Fit', FIT, 20.80, 73),                                  # product trails, walk, split screen
+    # Outer panels: the bag appears and turns; middle panel: "Lower in calories than any other nut"
+    shot('m5', 'Barukas', BARUKAS, 0.00, 63, layout=TRIPTYCH, center_start=7.70),
+    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 31.00, 60),              # dev request card into "Desarrollo"
+    shot('m15', 'APIMA', APIMA, 2.15, 46),                              # logo drawing itself
+    shot('m7', 'ESPN', LIGUE_1, 36.55, 21),                             # Ligue 1 wipe into the match card
 ]
 
 TRIPTYCH_GAP = 6  # black separator width in pixels at 1080p
@@ -73,29 +90,49 @@ POSTER = 'images/reel-poster.jpg'
 POSTER_AT = 0.9
 
 
-def shot_filter(index, frames, layout, width):
-    base = f'[{index}:v]fps={FPS},trim=end_frame={frames},setpts=PTS-STARTPTS'
-    if layout == TRIPTYCH:
-        panel = (WIDTH - 2 * TRIPTYCH_GAP) // 3
-        panel_height = round(panel * 16 / 9)
-        return (
-            f'{base},scale={panel}:{panel_height},setsar=1,crop={panel}:{HEIGHT},split=3[p{index}a][p{index}b][p{index}c];'
-            f'[p{index}a]pad={panel + TRIPTYCH_GAP}:{HEIGHT}:0:0:black[q{index}a];'
-            f'[p{index}b]pad={panel + TRIPTYCH_GAP}:{HEIGHT}:0:0:black[q{index}b];'
-            f'[q{index}a][q{index}b][p{index}c]hstack=3,scale={width}:-2:flags=lanczos,setsar=1,format=yuv420p[v{index}]'
-        )
+def timed(input_index, item):
     return (
-        f'{base},scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,crop={WIDTH}:{HEIGHT},'
-        f'scale={width}:-2:flags=lanczos,setsar=1,format=yuv420p[v{index}]'
+        f"[{input_index}:v]setpts=(PTS-STARTPTS)/{item['speed']},fps={FPS},"
+        f"trim=end_frame={item['frames']},setpts=PTS-STARTPTS"
+    )
+
+
+def shot_filter(index, inputs, item, width):
+    finish = f'scale={width}:-2:flags=lanczos,setsar=1,format=yuv420p[v{index}]'
+    if item['layout'] == TRIPTYCH:
+        panel = (WIDTH - 2 * TRIPTYCH_GAP) // 3
+        fit = f'scale={panel}:{round(panel * 16 / 9)},setsar=1,crop={panel}:{HEIGHT}'
+        outer = f"{timed(inputs[0], item)},{fit}"
+        if len(inputs) > 1:
+            chains = [f'{outer},split=2[o{index}l][o{index}r]', f"{timed(inputs[1], item)},{fit}[o{index}c]"]
+        else:
+            chains = [f'{outer},split=3[o{index}l][o{index}c][o{index}r]']
+        chains += [
+            f'[o{index}l]pad={panel + TRIPTYCH_GAP}:{HEIGHT}:0:0:black[g{index}l]',
+            f'[o{index}c]pad={panel + TRIPTYCH_GAP}:{HEIGHT}:0:0:black[g{index}c]',
+            f'[g{index}l][g{index}c][o{index}r]hstack=3,{finish}',
+        ]
+        return ';'.join(chains)
+    return (
+        f"{timed(inputs[0], item)},scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
+        f'crop={WIDTH}:{HEIGHT},{finish}'
     )
 
 
 def render(output, width, crf):
     args = ['ffmpeg', '-v', 'error', '-y']
-    for _, _, source, start, _, _ in SHOTS:
-        args += ['-ss', f'{start:.3f}', '-i', str(PUBLIC / source)]
+    shot_inputs = []
+    next_input = 0
+    for item in SHOTS:
+        starts = [item['start']] + ([item['center_start']] if item['center_start'] is not None else [])
+        indexes = []
+        for start in starts:
+            args += ['-ss', f'{start:.3f}', '-i', str(PUBLIC / item['source'])]
+            indexes.append(next_input)
+            next_input += 1
+        shot_inputs.append(indexes)
 
-    chains = [shot_filter(index, frames, layout, width) for index, (_, _, _, _, frames, layout) in enumerate(SHOTS)]
+    chains = [shot_filter(index, shot_inputs[index], item, width) for index, item in enumerate(SHOTS)]
     chains.append(''.join(f'[v{index}]' for index in range(len(SHOTS))) + f'concat=n={len(SHOTS)}:v=1:a=0[out]')
 
     args += [
@@ -118,9 +155,9 @@ def main():
     ], check=True)
 
     cues, elapsed = [], 0
-    for project_id, client, _, _, frames, _ in SHOTS:
-        cues.append({'id': project_id, 'client': client, 'at': round(elapsed / FPS, 3)})
-        elapsed += frames
+    for item in SHOTS:
+        cues.append({'id': item['project_id'], 'client': item['client'], 'at': round(elapsed / FPS, 3)})
+        elapsed += item['frames']
 
     showreel = {
         'sources': {'desktop': '/' + OUTPUTS[0][0], 'mobile': '/' + OUTPUTS[1][0]},

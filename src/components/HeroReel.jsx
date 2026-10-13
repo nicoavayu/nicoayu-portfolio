@@ -33,11 +33,11 @@ const HeroReel = ({ reel, onOpen }) => {
     const [source] = useState(() => pickSource(reel.sources))
     const isInView = useInView(containerRef, { amount: 0.25 })
     const reduceMotion = useReducedMotion()
-    const { t, language } = useLanguage()
+    const { t } = useLanguage()
 
     const isStatic = reduceMotion || prefersSavingData()
     const cue = reel.cues[cueIndex]
-    const { project } = cue
+    const { project, client } = cue
 
     // Only play while the reel is on screen
     useEffect(() => {
@@ -122,22 +122,24 @@ const HeroReel = ({ reel, onOpen }) => {
             {/* Bottom info */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 md:p-6">
                 <div className="flex items-end justify-between gap-4">
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                            key={`${cue.at}-${language}`}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -6 }}
-                            transition={{ duration: 0.25 }}
-                        >
-                            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/60">
-                                {t.categories.motion} · {project.year}
-                            </p>
-                            <p className="mt-1.5 font-display text-2xl font-bold uppercase leading-none text-white md:text-4xl">
-                                {project.title}
-                            </p>
-                        </motion.div>
-                    </AnimatePresence>
+                    <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/60">
+                        <span className="hidden sm:inline">{t.hero.reel_client}</span>
+                        <span className="hidden h-px w-6 bg-white/40 sm:inline-block" aria-hidden="true" />
+                        <span className="relative inline-block overflow-hidden text-white" aria-live="off">
+                            <AnimatePresence mode="wait" initial={false}>
+                                <motion.span
+                                    key={client}
+                                    className="block"
+                                    initial={{ y: '100%' }}
+                                    animate={{ y: 0 }}
+                                    exit={{ y: '-100%' }}
+                                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                                >
+                                    {client}
+                                </motion.span>
+                            </AnimatePresence>
+                        </span>
+                    </p>
 
                     <span className="hidden shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100 sm:inline-flex md:translate-y-2 md:opacity-0">
                         {t.hero.reel_watch}

@@ -63,6 +63,22 @@ export const PROJECTS = [
         }
     },
     {
+        id: 'm19',
+        title: 'Orkos / InvGate Loop',
+        year: '2025',
+        category: 'Motion Graphics',
+        subcategory: 'motion',
+        previewUrl: '/videos/motion graphics/orkos_invgate_loop.mp4',
+        videoUrl: '/videos/motion graphics/orkos_invgate_loop.mp4',
+        poster: '/images/_stills_MG/orkos-invgate-loop.jpg',
+        loop: true,
+        details: {
+            role: 'Motion Designer',
+            scope: 'Motion Graphics, Animation, Seamless Loop',
+            context: 'Seamless 80-second loop for Orkos and InvGate screens: a continuous camera move through documents, code and workflow nodes, built on a pink visual system so it can run nonstop at events.'
+        }
+    },
+    {
         id: 'm6',
         title: 'Government of Buenos Aires',
         year: '2021',

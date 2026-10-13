@@ -22,6 +22,7 @@ export const translations = {
             cv_cta: 'Download CV',
             reel_label: 'Motion reel',
             reel_watch: 'Watch project',
+            reel_client: 'Client',
             clients: 'Clients & collaborations'
         },
         about: {
@@ -136,6 +137,7 @@ export const translations = {
             cv_cta: 'Descargar CV',
             reel_label: 'Motion reel',
             reel_watch: 'Ver proyecto',
+            reel_client: 'Cliente',
             clients: 'Clientes y colaboraciones'
         },
         about: {

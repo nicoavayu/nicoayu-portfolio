@@ -88,6 +88,7 @@ const ProjectModal = ({ project, onClose }) => {
                                     autoPlay
                                     controls
                                     playsInline
+                                    loop={Boolean(project.loop)}
                                     className={isVertical
                                         ? 'aspect-[9/16] h-[70vh] max-w-full bg-black object-contain lg:h-[90vh]'
                                         : 'aspect-video w-full bg-black object-contain'}

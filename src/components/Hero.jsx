@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import HeroReel from './HeroReel'
 import { useLanguage } from '../context/LanguageContext'
-import { HERO_REEL, CLIENTS } from '../data/projects'
+import { SHOWREEL, CLIENTS } from '../data/projects'
 import { CV_PDF_PATH } from '../data/site'
 import { ArrowDown, Download } from './Icons'
 
@@ -95,7 +95,7 @@ const Hero = ({ onNavigate, onOpenProject }) => {
                     transition={{ duration: 1.2, delay: 0.55, ease: EASE_OUT_EXPO }}
                     className="mt-12 md:mt-16"
                 >
-                    <HeroReel clips={HERO_REEL} onOpen={onOpenProject} />
+                    <HeroReel reel={SHOWREEL} onOpen={onOpenProject} />
                 </motion.div>
             </div>
 

@@ -3,30 +3,89 @@ import { motion, AnimatePresence, useInView, useReducedMotion } from 'framer-mot
 import { useLanguage } from '../context/LanguageContext'
 import { ArrowUpRight } from './Icons'
 
-const CLIP_DURATION_MS = 5000
-
 const prefersSavingData = () =>
     typeof navigator !== 'undefined' && Boolean(navigator.connection?.saveData)
 
-const ReelClip = ({ clip, playVideo, isPaused }) => {
-    const videoRef = useRef(null)
-    const [isPlaying, setIsPlaying] = useState(false)
+const pickSource = (sources) =>
+    window.matchMedia('(min-width: 768px)').matches ? sources.desktop : sources.mobile
 
+const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60)
+    const rest = Math.floor(seconds % 60)
+    return `${String(minutes).padStart(2, '0')}:${String(rest).padStart(2, '0')}`
+}
+
+const getCueIndex = (cues, time) => {
+    let index = 0
+    cues.forEach((cue, cueIndex) => {
+        if (time >= cue.at) index = cueIndex
+    })
+    return index
+}
+
+const HeroReel = ({ reel, onOpen }) => {
+    const containerRef = useRef(null)
+    const videoRef = useRef(null)
+    const progressRef = useRef(null)
+    const timecodeRef = useRef(null)
+    const [cueIndex, setCueIndex] = useState(0)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [source] = useState(() => pickSource(reel.sources))
+    const isInView = useInView(containerRef, { amount: 0.25 })
+    const reduceMotion = useReducedMotion()
+    const { t } = useLanguage()
+
+    const isStatic = reduceMotion || prefersSavingData()
+    const cue = reel.cues[cueIndex]
+    const { project, client } = cue
+
+    // Only play while the reel is on screen
     useEffect(() => {
         const video = videoRef.current
         if (!video) return
-        if (isPaused) video.pause()
-        else video.play().catch(() => {})
-    }, [isPaused])
+        if (isInView) video.play().catch(() => {})
+        else video.pause()
+    }, [isInView, isStatic])
+
+    // Keep progress bar, timecode and shot label in sync with the video
+    useEffect(() => {
+        const video = videoRef.current
+        if (!video || !isInView) return
+
+        let frame
+        const tick = () => {
+            const time = video.currentTime
+            if (progressRef.current) progressRef.current.style.transform = `scaleX(${time / reel.duration})`
+            if (timecodeRef.current) timecodeRef.current.textContent = formatTime(time)
+            setCueIndex(getCueIndex(reel.cues, time))
+            frame = requestAnimationFrame(tick)
+        }
+
+        frame = requestAnimationFrame(tick)
+        return () => cancelAnimationFrame(frame)
+    }, [isInView, isStatic, reel])
+
+    const handleSeek = (event) => {
+        const video = videoRef.current
+        if (!video) return
+        const rect = event.currentTarget.getBoundingClientRect()
+        const ratio = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1)
+        video.currentTime = ratio * reel.duration
+    }
 
     return (
-        <>
-            <img src={clip.poster} alt="" className="absolute inset-0 h-full w-full scale-105 object-cover" />
-            {playVideo && (
+        <div
+            ref={containerRef}
+            className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-surface-2 sm:aspect-video"
+        >
+            <img src={reel.poster} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            {!isStatic && (
                 <video
                     ref={videoRef}
-                    src={`${clip.previewUrl}#t=${clip.start}`}
+                    src={source}
+                    poster={reel.poster}
                     muted
+                    loop
                     autoPlay
                     playsInline
                     preload="auto"
@@ -34,97 +93,53 @@ const ReelClip = ({ clip, playVideo, isPaused }) => {
                     className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${isPlaying ? 'opacity-100' : 'opacity-0'}`}
                 />
             )}
-        </>
-    )
-}
-
-const HeroReel = ({ clips, onOpen }) => {
-    const [index, setIndex] = useState(0)
-    const containerRef = useRef(null)
-    const isInView = useInView(containerRef, { amount: 0.25 })
-    const reduceMotion = useReducedMotion()
-    const { t, language } = useLanguage()
-
-    const isStatic = reduceMotion || prefersSavingData()
-    const isRunning = isInView && !isStatic
-    const clip = clips[index]
-    const categoryLabel = clip.subcategory === 'short_form' ? t.categories.short_form : t.categories.motion
-
-    // Advance to the next clip while the reel is on screen
-    useEffect(() => {
-        if (!isRunning) return
-        const timer = setTimeout(() => setIndex((current) => (current + 1) % clips.length), CLIP_DURATION_MS)
-        return () => clearTimeout(timer)
-    }, [index, isRunning, clips.length])
-
-    // Warm up the next poster so the crossfade never shows an empty frame
-    useEffect(() => {
-        const next = clips[(index + 1) % clips.length]
-        if (next?.poster) new Image().src = next.poster
-    }, [index, clips])
-
-    return (
-        <div
-            ref={containerRef}
-            className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-surface-2 sm:aspect-video lg:aspect-[2.2/1]"
-        >
-            <AnimatePresence initial={false}>
-                <motion.div
-                    key={clip.id}
-                    className="absolute inset-0"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.9, ease: 'easeInOut' }}
-                >
-                    <ReelClip clip={clip} playVideo={!isStatic} isPaused={!isInView} />
-                </motion.div>
-            </AnimatePresence>
 
             {/* Legibility gradients */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/30" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/0 to-black/35" />
 
-            {/* Whole frame opens the current project */}
+            {/* Whole frame opens the project currently on screen */}
             <button
                 type="button"
-                onClick={() => onOpen(clip)}
+                onClick={() => onOpen(project)}
                 className="absolute inset-0 z-10 rounded-2xl"
-                aria-label={`${t.hero.reel_watch}: ${clip.title}`}
+                aria-label={`${t.hero.reel_watch}: ${project.title}`}
             />
 
             {/* Top bar */}
             <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between p-4 font-mono text-[11px] uppercase tracking-[0.16em] text-white/85 md:p-6">
                 <span className="flex items-center gap-2">
                     <span className="relative flex h-1.5 w-1.5">
-                        {isRunning && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />}
+                        {isPlaying && isInView && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />}
                         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
                     </span>
                     {t.hero.reel_label}
                 </span>
-                <span>
-                    {String(index + 1).padStart(2, '0')} / {String(clips.length).padStart(2, '0')}
+                <span className="tabular-nums">
+                    <span ref={timecodeRef}>00:00</span> / {formatTime(reel.duration)}
                 </span>
             </div>
 
             {/* Bottom info */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4 md:p-6">
                 <div className="flex items-end justify-between gap-4">
-                    <AnimatePresence mode="wait" initial={false}>
-                        <motion.div
-                            key={`${clip.id}-${language}`}
-                            initial={{ opacity: 0, y: 12 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -8 }}
-                            transition={{ duration: 0.45 }}
-                        >
-                            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/60">
-                                {categoryLabel} · {clip.year}
-                            </p>
-                            <p className="mt-1.5 font-display text-2xl font-bold uppercase leading-none text-white md:text-4xl">
-                                {clip.title}
-                            </p>
-                        </motion.div>
-                    </AnimatePresence>
+                    <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-white/60">
+                        <span className="hidden sm:inline">{t.hero.reel_client}</span>
+                        <span className="hidden h-px w-6 bg-white/40 sm:inline-block" aria-hidden="true" />
+                        <span className="relative inline-block overflow-hidden text-white" aria-live="off">
+                            <AnimatePresence mode="wait" initial={false}>
+                                <motion.span
+                                    key={client}
+                                    className="block"
+                                    initial={{ y: '100%' }}
+                                    animate={{ y: 0 }}
+                                    exit={{ y: '-100%' }}
+                                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                                >
+                                    {client}
+                                </motion.span>
+                            </AnimatePresence>
+                        </span>
+                    </p>
 
                     <span className="hidden shrink-0 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-500 ease-out-expo group-hover:translate-y-0 group-hover:opacity-100 sm:inline-flex md:translate-y-2 md:opacity-0">
                         {t.hero.reel_watch}
@@ -132,32 +147,30 @@ const HeroReel = ({ clips, onOpen }) => {
                     </span>
                 </div>
 
-                {/* Progress segments */}
-                <div className="pointer-events-auto relative z-20 mt-4 flex gap-1.5 md:mt-6">
-                    {clips.map((item, itemIndex) => (
-                        <button
-                            key={item.id}
-                            type="button"
-                            onClick={() => setIndex(itemIndex)}
-                            aria-label={`${t.hero.reel_go_to} ${itemIndex + 1}: ${item.title}`}
-                            aria-current={itemIndex === index ? 'true' : undefined}
-                            className="group/segment flex-1 py-2"
-                        >
-                            <span className="relative block h-[2px] overflow-hidden rounded-full bg-white/25 transition-colors group-hover/segment:bg-white/45">
-                                {itemIndex < index && <span className="absolute inset-0 bg-white" />}
-                                {itemIndex === index && (
-                                    <motion.span
-                                        key={`${index}-${isRunning}`}
-                                        className="absolute inset-0 origin-left bg-accent"
-                                        initial={{ scaleX: isRunning ? 0 : 1 }}
-                                        animate={{ scaleX: 1 }}
-                                        transition={{ duration: isRunning ? CLIP_DURATION_MS / 1000 : 0, ease: 'linear' }}
-                                    />
-                                )}
-                            </span>
-                        </button>
-                    ))}
-                </div>
+                {/* Progress with a tick on every cut; click to jump */}
+                {!isStatic && (
+                    <div
+                        role="presentation"
+                        onClick={handleSeek}
+                        className="pointer-events-auto relative z-20 mt-3 h-6 cursor-pointer md:mt-5"
+                    >
+                        <span className="absolute inset-x-0 top-1/2 h-[2px] -translate-y-1/2 overflow-hidden rounded-full bg-white/25">
+                            <span
+                                ref={progressRef}
+                                className="absolute inset-0 origin-left bg-accent"
+                                style={{ transform: 'scaleX(0)' }}
+                            />
+                        </span>
+                        {reel.cues.slice(1).map((item) => (
+                            <span
+                                key={item.at}
+                                aria-hidden="true"
+                                className="absolute top-1/2 h-2 w-px -translate-y-1/2 bg-white/50"
+                                style={{ left: `${(item.at / reel.duration) * 100}%` }}
+                            />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     )

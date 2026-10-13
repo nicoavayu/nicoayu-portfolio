@@ -75,7 +75,7 @@ export const PROJECTS = [
         details: {
             role: 'Motion Designer',
             scope: 'Motion Graphics, Animation, Seamless Loop',
-            context: 'Seamless 80-second loop for Orkos and InvGate screens: a continuous camera move through documents, code and workflow nodes, built on a pink visual system so it can run nonstop at events.'
+            context: 'Seamless loop for Orkos and InvGate screens: a continuous camera move through documents, code and workflow nodes, built on a pink visual system so it can run nonstop at events.'
         }
     },
     {

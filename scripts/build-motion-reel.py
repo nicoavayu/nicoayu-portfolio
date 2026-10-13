@@ -46,7 +46,7 @@ TRIPTYCH = 'triptych'
 # (project id, client, source video, start second, frames at 30 fps, layout)
 SHOTS = [
     ('m3', 'ESPN', PREMIER_LEAGUE, 0.00, 36, FULL),                  # title card builds
-    ('m19', 'Orkos / InvGate', ORKOS_LOOP, 37.25, 50, FULL),         # file flies past camera
+    ('m19', 'Orkos / InvGate', ORKOS_LOOP, 14.00, 120, FULL),        # document, eye and InvGate card
     ('m2', 'Fox Sports', FOX, 8.74, 60, FULL),                       # crane down into the 3D studio
     ('m9', 'Rebecca', REBECCA, 4.60, 52, FULL),                      # glitch into the logo
     ('m6', 'Gobierno de Buenos Aires', GOV_BA, 22.93, 26, FULL),     # car with speed lines
@@ -57,7 +57,7 @@ SHOTS = [
     ('m11', 'Asma Zero', ASMA_ZERO, 30.25, 48, FULL),                # app screens scrolling
     ('m1', 'Fit', FIT, 20.80, 73, FULL),                             # product trails, walk, split screen
     ('m5', 'Barukas', BARUKAS, 1.00, 66, TRIPTYCH),                  # bag flies, nuts fall, logo builds
-    ('m19', 'Orkos / InvGate', ORKOS_LOOP, 41.85, 46, FULL),         # sphere, check and node orbit
+    ('m19', 'Orkos / InvGate', ORKOS_LOOP, 31.00, 60, FULL),         # dev request card into "Desarrollo"
     ('m12', 'BOA', BOA, 94.10, 29, FULL),                            # block transition into "10 years"
     ('m15', 'APIMA', APIMA, 2.15, 46, FULL),                         # logo drawing itself
     ('m7', 'ESPN', LIGUE_1, 36.55, 21, FULL),                        # Ligue 1 wipe into the match card

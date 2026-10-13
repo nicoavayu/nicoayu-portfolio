@@ -20,9 +20,8 @@ export const translations = {
             primary_cta: 'View work',
             secondary_cta: 'Get in touch',
             cv_cta: 'Download CV',
-            reel_label: 'Selected work',
+            reel_label: 'Motion reel',
             reel_watch: 'Watch project',
-            reel_go_to: 'Show clip',
             clients: 'Clients & collaborations'
         },
         about: {
@@ -135,9 +134,8 @@ export const translations = {
             primary_cta: 'Ver proyectos',
             secondary_cta: 'Contactame',
             cv_cta: 'Descargar CV',
-            reel_label: 'Trabajos seleccionados',
+            reel_label: 'Motion reel',
             reel_watch: 'Ver proyecto',
-            reel_go_to: 'Mostrar clip',
             clients: 'Clientes y colaboraciones'
         },
         about: {

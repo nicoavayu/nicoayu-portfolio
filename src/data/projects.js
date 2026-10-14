@@ -233,6 +233,21 @@ export const PROJECTS = [
 
     // Short-Form Ads Section
     {
+        id: 's26',
+        title: 'NerdWallet',
+        year: '2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/nerdwallet.mp4',
+        videoUrl: '/videos/social media/nerdwallet.mp4',
+        poster: '/images/posters/nerdwallet.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Short-Form Editing, Animated Captions, Motion Graphics, Sound Design, Final Delivery.',
+            context: 'Creator-led vertical ad for NerdWallet that answers a viewer comment, pairing direct-to-camera storytelling with animated captions and product screens to drive credit card comparisons.'
+        }
+    },
+    {
         id: 's25',
         title: 'Founders',
         year: '2026',
@@ -593,6 +608,7 @@ export const CLIENTS = [
     'Fox Sports',
     'ESET',
     'InvGate',
+    'NerdWallet',
     'Quillbot',
     'Alpecin',
     'Hometap',

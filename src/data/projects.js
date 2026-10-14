@@ -233,21 +233,6 @@ export const PROJECTS = [
 
     // Short-Form Ads Section
     {
-        id: 's25',
-        title: 'Founders',
-        year: '2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/founders.mp4',
-        videoUrl: '/videos/social media/founders.mp4',
-        poster: '/images/_stills_ads/founders.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Short-Form Editing, Animated Captions, Typography, Visual Pacing, Final Delivery.',
-            context: 'Vertical reel exploring content creation for founders, combining direct-to-camera storytelling with bold animated captions and dynamic pacing for social media.'
-        }
-    },
-    {
         id: 's23',
         title: 'Sockets',
         year: '2026',
@@ -263,89 +248,59 @@ export const PROJECTS = [
         }
     },
     {
-        id: 's24',
-        title: 'Sanma',
+        id: 's21',
+        title: 'Threadbeast',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/threadbeast 3d box.mp4',
+        videoUrl: '/videos/social media/threadbeast 3d box.mp4',
+        poster: '/images/posters/box3d_00055.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's19',
+        title: 'Playbook',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/playbook.mp4',
+        videoUrl: '/videos/social media/playbook.mp4',
+        poster: '/images/posters/playbook_00807.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's26',
+        title: 'NerdWallet',
         year: '2026',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
-        previewUrl: '/videos/social media/sanma.mp4',
-        videoUrl: '/videos/social media/sanma.mp4',
-        poster: '/images/_stills_ads/sanma.jpg',
+        previewUrl: '/videos/social media/nerdwallet.mp4',
+        videoUrl: '/videos/social media/nerdwallet.mp4',
+        poster: '/images/posters/nerdwallet.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Typography, Color, Sound Design, Final Delivery.',
-            context: 'Editorial short-form food piece centered on Japanese pike mackerel preparation, using tactile close-ups and restrained typography to create a premium social-first rhythm.'
+            scope: 'Short-Form Editing, Animated Captions, Motion Graphics, Sound Design, Final Delivery.',
+            context: 'Creator-led vertical ad for NerdWallet that answers a viewer comment, pairing direct-to-camera storytelling with animated captions and product screens to drive credit card comparisons.'
         }
     },
     {
-        id: 's1',
-        title: 'Alpecin',
+        id: 's7',
+        title: 'Threadbeast',
         year: '2020–2026',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
-        previewUrl: '/videos/social media/alpecin.mp4',
-        videoUrl: '/videos/social media/alpecin.mp4',
-        poster: '/images/posters/alpecin_01254.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's2',
-        title: 'Quillbot',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/quillbot.mp4',
-        videoUrl: '/videos/social media/quillbot.mp4',
-        poster: '/images/posters/quillbot_06216.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's3',
-        title: 'USCCA',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/uscca.mp4',
-        videoUrl: '/videos/social media/uscca.mp4',
-        poster: '/images/posters/uscca_02030.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's4',
-        title: 'Stately',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/stately.mp4',
-        videoUrl: '/videos/social media/stately.mp4',
-        poster: '/images/posters/stately_01805.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's5',
-        title: 'Atomic pads',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/atomicpads.mp4',
-        videoUrl: '/videos/social media/atomicpads.mp4',
-        poster: '/images/posters/atomicpads_01280.jpg',
+        previewUrl: '/videos/social media/337_Video_Branded animation_V.mp4',
+        videoUrl: '/videos/social media/337_Video_Branded animation_V.mp4',
+        poster: '/images/posters/animation_00263.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
             scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
@@ -368,74 +323,14 @@ export const PROJECTS = [
         }
     },
     {
-        id: 's7',
-        title: 'Threadbeast',
+        id: 's1',
+        title: 'Alpecin',
         year: '2020–2026',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
-        previewUrl: '/videos/social media/337_Video_Branded animation_V.mp4',
-        videoUrl: '/videos/social media/337_Video_Branded animation_V.mp4',
-        poster: '/images/posters/animation_00263.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's8',
-        title: 'Threadbeast',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/threadbeast crash.mp4',
-        videoUrl: '/videos/social media/threadbeast crash.mp4',
-        poster: '/images/posters/threadbeast-crash_00105.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's9',
-        title: 'Threadbeast',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/threadbeast swipe.mp4',
-        videoUrl: '/videos/social media/threadbeast swipe.mp4',
-        poster: '/images/posters/swipe_00407.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's10',
-        title: 'Antevorta',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/antevorta.mp4',
-        videoUrl: '/videos/social media/antevorta.mp4',
-        poster: '/images/posters/anteovorta_04844.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's11',
-        title: 'Threadbeast',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/threadbeast jump.mp4',
-        videoUrl: '/videos/social media/threadbeast jump.mp4',
-        poster: '/images/posters/threadbeast-jump_00942.jpg',
+        previewUrl: '/videos/social media/alpecin.mp4',
+        videoUrl: '/videos/social media/alpecin.mp4',
+        poster: '/images/posters/alpecin_01254.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
             scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
@@ -451,36 +346,6 @@ export const PROJECTS = [
         previewUrl: '/videos/social media/innerwell.mp4',
         videoUrl: '/videos/social media/innerwell.mp4',
         poster: '/images/posters/innerwell_08125.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's13',
-        title: 'Threadbeast',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/threadbeast starter pack.mp4',
-        videoUrl: '/videos/social media/threadbeast starter pack.mp4',
-        poster: '/images/posters/starter-pack_00244.jpg',
-        details: {
-            role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
-        }
-    },
-    {
-        id: 's14',
-        title: 'Sheath',
-        year: '2020–2026',
-        category: 'Short-Form Ads',
-        subcategory: 'short_form',
-        previewUrl: '/videos/social media/sheat.mp4',
-        videoUrl: '/videos/social media/sheat.mp4',
-        poster: '/images/posters/sheat_00599.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
             scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
@@ -518,14 +383,164 @@ export const PROJECTS = [
         }
     },
     {
-        id: 's19',
-        title: 'Playbook',
+        id: 's2',
+        title: 'Quillbot',
         year: '2020–2026',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
-        previewUrl: '/videos/social media/playbook.mp4',
-        videoUrl: '/videos/social media/playbook.mp4',
-        poster: '/images/posters/playbook_00807.jpg',
+        previewUrl: '/videos/social media/quillbot.mp4',
+        videoUrl: '/videos/social media/quillbot.mp4',
+        poster: '/images/posters/quillbot_06216.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's22',
+        title: 'Hometap',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/hometap.mp4',
+        videoUrl: '/videos/social media/hometap.mp4',
+        poster: '/images/posters/hometap_00899.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's11',
+        title: 'Threadbeast',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/threadbeast jump.mp4',
+        videoUrl: '/videos/social media/threadbeast jump.mp4',
+        poster: '/images/posters/threadbeast-jump_00942.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's24',
+        title: 'Sanma',
+        year: '2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/sanma.mp4',
+        videoUrl: '/videos/social media/sanma.mp4',
+        poster: '/images/_stills_ads/sanma.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Typography, Color, Sound Design, Final Delivery.',
+            context: 'Editorial short-form food piece centered on Japanese pike mackerel preparation, using tactile close-ups and restrained typography to create a premium social-first rhythm.'
+        }
+    },
+    {
+        id: 's10',
+        title: 'Antevorta',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/antevorta.mp4',
+        videoUrl: '/videos/social media/antevorta.mp4',
+        poster: '/images/posters/anteovorta_04844.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's9',
+        title: 'Threadbeast',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/threadbeast swipe.mp4',
+        videoUrl: '/videos/social media/threadbeast swipe.mp4',
+        poster: '/images/posters/swipe_00407.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's5',
+        title: 'Atomic pads',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/atomicpads.mp4',
+        videoUrl: '/videos/social media/atomicpads.mp4',
+        poster: '/images/posters/atomicpads_01280.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's13',
+        title: 'Threadbeast',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/threadbeast starter pack.mp4',
+        videoUrl: '/videos/social media/threadbeast starter pack.mp4',
+        poster: '/images/posters/starter-pack_00244.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's14',
+        title: 'Sheath',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/sheat.mp4',
+        videoUrl: '/videos/social media/sheat.mp4',
+        poster: '/images/posters/sheat_00599.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's8',
+        title: 'Threadbeast',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/threadbeast crash.mp4',
+        videoUrl: '/videos/social media/threadbeast crash.mp4',
+        poster: '/images/posters/threadbeast-crash_00105.jpg',
+        details: {
+            role: 'Video Editor & Motion Designer',
+            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
+            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+        }
+    },
+    {
+        id: 's3',
+        title: 'USCCA',
+        year: '2020–2026',
+        category: 'Short-Form Ads',
+        subcategory: 'short_form',
+        previewUrl: '/videos/social media/uscca.mp4',
+        videoUrl: '/videos/social media/uscca.mp4',
+        poster: '/images/posters/uscca_02030.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
             scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
@@ -548,14 +563,14 @@ export const PROJECTS = [
         }
     },
     {
-        id: 's21',
-        title: 'Threadbeast',
+        id: 's4',
+        title: 'Stately',
         year: '2020–2026',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
-        previewUrl: '/videos/social media/threadbeast 3d box.mp4',
-        videoUrl: '/videos/social media/threadbeast 3d box.mp4',
-        poster: '/images/posters/box3d_00055.jpg',
+        previewUrl: '/videos/social media/stately.mp4',
+        videoUrl: '/videos/social media/stately.mp4',
+        poster: '/images/posters/stately_01805.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
             scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
@@ -563,18 +578,18 @@ export const PROJECTS = [
         }
     },
     {
-        id: 's22',
-        title: 'Hometap',
-        year: '2020–2026',
+        id: 's25',
+        title: 'Founders',
+        year: '2026',
         category: 'Short-Form Ads',
         subcategory: 'short_form',
-        previewUrl: '/videos/social media/hometap.mp4',
-        videoUrl: '/videos/social media/hometap.mp4',
-        poster: '/images/posters/hometap_00899.jpg',
+        previewUrl: '/videos/social media/founders.mp4',
+        videoUrl: '/videos/social media/founders.mp4',
+        poster: '/images/_stills_ads/founders.jpg',
         details: {
             role: 'Video Editor & Motion Designer',
-            scope: 'Video Editing, Motion Graphics, Sounds design, Final delivery.',
-            context: 'Performance-driven short-form video ads for social media platforms (Instagram, TikTok, Meta), optimized for high engagement and conversion.'
+            scope: 'Short-Form Editing, Animated Captions, Typography, Visual Pacing, Final Delivery.',
+            context: 'Vertical reel exploring content creation for founders, combining direct-to-camera storytelling with bold animated captions and dynamic pacing for social media.'
         }
     },
 ]
@@ -593,6 +608,7 @@ export const CLIENTS = [
     'Fox Sports',
     'ESET',
     'InvGate',
+    'NerdWallet',
     'Quillbot',
     'Alpecin',
     'Hometap',

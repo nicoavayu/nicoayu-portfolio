@@ -4,7 +4,7 @@
     "mobile": "/videos/reel/motion-reel-720.mp4"
   },
   "poster": "/images/reel-poster.jpg",
-  "duration": 26.7,
+  "duration": 27.067,
   "cues": [
     {
       "id": "m3",
@@ -82,14 +82,14 @@
       "at": 20.567
     },
     {
-      "id": "m19",
-      "client": "Orkos / InvGate",
+      "id": "m20",
+      "client": "Arma2 Torneos",
       "at": 22.667
     },
     {
       "id": "m15",
       "client": "APIMA",
-      "at": 25.167
+      "at": 25.533
     }
   ]
 }

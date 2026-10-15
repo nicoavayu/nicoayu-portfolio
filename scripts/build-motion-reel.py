@@ -35,6 +35,7 @@ REBECCA = MG + 'rebecca_contenidos_-_animation_logo (1080p).mp4'
 ESET = MG + 'eset_-_video_corp._2014 (1080p).mp4'
 ORKOS = MG + 'Orkos_Invgate_Screen_1080.mp4'
 ORKOS_LOOP = MG + 'orkos_invgate_loop.mp4'
+ARMA2 = MG + 'arma2_torneos.mp4'
 ASMA_ZERO = MG + 'asma_zero_-_final_test (1080p).mp4'
 FIT = MG + 'reel_fit_shoes_-_2020 (1080p).mp4'
 BARUKAS = 'videos/social media/barukas_-_ad (1080p).mp4'
@@ -75,7 +76,7 @@ SHOTS = [
     shot('m1', 'Fit', FIT, 20.80, 67),                                  # product trails, walk, split screen
     # Outer panels: the bag appears and turns; middle panel: "Lower in calories than any other nut"
     shot('m5', 'Barukas', BARUKAS, 0.00, 63, layout=TRIPTYCH, center_start=7.70),
-    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 36.00, 75),              # files fly past the camera
+    shot('m20', 'Arma2 Torneos', ARMA2, 66.50, 86),                     # match graphics cycle through styles
     shot('m15', 'APIMA', APIMA, 2.15, 46),                              # logo drawing itself
 ]
 

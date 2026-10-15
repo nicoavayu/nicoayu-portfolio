@@ -60,7 +60,7 @@ def shot(project_id, client, source, start, frames, layout=FULL, speed=1.0, cent
 
 SHOTS = [
     shot('m3', 'ESPN', PREMIER_LEAGUE, 0.00, 36),                       # title card builds
-    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 13.60, 88),              # document flies into the eye, arc fills
+    shot('m20', 'Arma2 Torneos', ARMA2, 66.50, 86),                     # match graphics cycle through styles
     # Fox is one continuous camera move, ramped so its slow drift never reads as a hold
     shot('m2', 'Fox Sports', FOX, 8.74, 51, speed=2.0),                 # crane down into the 3D studio
     shot('m2', 'Fox Sports', FOX, 12.15, 22),                           # logo forms on the phone
@@ -76,7 +76,7 @@ SHOTS = [
     shot('m1', 'Fit', FIT, 20.80, 67),                                  # product trails, walk, split screen
     # Outer panels: the bag appears and turns; middle panel: "Lower in calories than any other nut"
     shot('m5', 'Barukas', BARUKAS, 0.00, 63, layout=TRIPTYCH, center_start=7.70),
-    shot('m20', 'Arma2 Torneos', ARMA2, 66.50, 86),                     # match graphics cycle through styles
+    shot('m19', 'Orkos / InvGate', ORKOS_LOOP, 36.00, 75),              # files fly past the camera
     shot('m15', 'APIMA', APIMA, 2.15, 46),                              # logo drawing itself
 ]
 

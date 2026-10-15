@@ -33,6 +33,21 @@ export const PROJECTS = [
         }
     },
     {
+        id: 'm20',
+        title: 'Arma2 Torneos',
+        year: '2026',
+        category: 'Motion Graphics',
+        subcategory: 'motion',
+        previewUrl: '/videos/motion graphics/arma2_torneos.mp4',
+        videoUrl: '/videos/motion graphics/arma2_torneos.mp4',
+        poster: '/images/_stills_MG/arma2-torneos.jpg',
+        details: {
+            role: 'Motion Designer & Video Editor',
+            scope: 'Product Launch Video, UI Animation, Device Mockups, Kinetic Typography, Editing',
+            context: 'Launch video for Arma2 Torneos, an app to organize amateur football tournaments. Laptop and phone mockups walk through fixtures, results, standings, social-ready match graphics in several styles and sponsor placement.'
+        }
+    },
+    {
         id: 'm5',
         title: 'Barukas',
         year: '2016',

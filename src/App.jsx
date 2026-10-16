@@ -122,7 +122,7 @@ function App() {
           <CvView />
         ) : (
           <>
-            <Hero onNavigate={handleNavigate} onOpenProject={setOpenProject} />
+            <Hero onNavigate={handleNavigate} />
             <ProjectGrid
               activeCategory={activeWorkCategory}
               onCategoryChange={handleWorkCategoryChange}

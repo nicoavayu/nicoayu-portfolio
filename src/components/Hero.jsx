@@ -17,7 +17,7 @@ const lineReveal = {
     visible: (delay = 0) => ({ y: 0, transition: { duration: 1.1, delay, ease: EASE_OUT_EXPO } }),
 }
 
-const Hero = ({ onNavigate, onOpenProject }) => {
+const Hero = ({ onNavigate }) => {
     const { t } = useLanguage()
 
     const handleSectionLink = (event, section) => {
@@ -95,7 +95,7 @@ const Hero = ({ onNavigate, onOpenProject }) => {
                     transition={{ duration: 1.2, delay: 0.55, ease: EASE_OUT_EXPO }}
                     className="mt-12 md:mt-16"
                 >
-                    <HeroReel reel={SHOWREEL} onOpen={onOpenProject} />
+                    <HeroReel reel={SHOWREEL} />
                 </motion.div>
             </div>
 
